@@ -47,6 +47,11 @@ XXXXXXXXX000XXXXXXXXXX
 XXXXXXXXXXX0XXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXX";
 
+trace("GENERATING LEVEL
+Selected level: 
+
+" + layout); 
+
 width = getLayoutWidth(layout);
 height = getLayoutHeight(layout); 
 
@@ -55,7 +60,6 @@ grid = ds_grid_create(width,height);
 for (i = 0; i &lt; height; i++) { 
     for (j = 0; j &lt; width; j++) { 
         pos = 1 + i*(width+2) + j;
-        trace(pos);
         thisChar = string_char_at(layout,pos);//1 + height*width + width);
         if (thisChar != "
 ") { 
@@ -93,8 +97,6 @@ for (i = 0; i &lt; height; i++) {
         } 
     }
 }
-
-
 
 ds_grid_destroy(grid); 
 instance_destroy(); 

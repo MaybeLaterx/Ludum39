@@ -25,11 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>humanTurn = false; 
+            <string>humanTurn = true; 
 maxMoves = 1; 
-movesLeft = 0; //maxMoves;
+movesLeft = 1; //maxMoves;
 maxPowers = 1;  
-powersLeft = 0; //maxPowers; 
+powersLeft = 1; //maxPowers; 
 
 </string>
           </argument>
@@ -59,6 +59,17 @@ if (movesLeft == 0 &amp;&amp; powersLeft == 0) {
     movesLeft = maxMoves; 
     powersLeft = maxPowers; 
     
+    if (!instance_exists(oHuman)) room_goto_next(); 
+    
+    hasTempShadows = false; 
+    with (oShadow) if (image_index = sShadow1 || image_index = sShadow2) {
+        //#hasTempShadows = true; 
+        break; 
+    }
+    if (!hasTempShadows) room_goto_next();
+}
+
+/*    
     if (humanTurn) { 
         trace("Finding first human"); 
         humanX = findNextHuman("x",0,0);
@@ -66,8 +77,6 @@ if (movesLeft == 0 &amp;&amp; powersLeft == 0) {
         
         if (humanX == -1 || humanY == -1) room_goto_next();        
     }
-}
-
 
 </string>
           </argument>
@@ -94,6 +103,9 @@ if (movesLeft == 0 &amp;&amp; powersLeft == 0) {
             <string>draw_set_color(c_white);
 draw_set_halign(fa_left);
 
+if (humanTurn) turnText = "Humans' Turn"; 
+else turnText = "Shadows' Turn";
+draw_text(x,y - 35,turnText);
 draw_text(x,y,"Moves remaining: " + string(movesLeft)); 
 draw_text(x,y + 35,"Powers remaining: " + string(powersLeft)); 
 

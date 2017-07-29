@@ -15,7 +15,7 @@
     <sprite>sprites\sWall</sprite>
     <sprite>sprites\sFloor</sprite>
     <sprite>sprites\sHumanFlashlight</sprite>
-    <sprite>sprites\sHumanIdle</sprite>
+    <sprite>sprites\sHumanIdleR</sprite>
     <sprite>sprites\sShadow</sprite>
     <sprite>sprites\sShadow1</sprite>
     <sprite>sprites\sShadow2</sprite>
@@ -28,6 +28,7 @@
     <script>scripts\getLayoutWidth.gml</script>
     <script>scripts\getLayoutHeight.gml</script>
     <script>scripts\findNextHuman.gml</script>
+    <script>scripts\isInside.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oGrid</object>
