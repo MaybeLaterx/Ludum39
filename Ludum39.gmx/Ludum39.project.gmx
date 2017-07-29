@@ -21,6 +21,8 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\trace.gml</script>
+    <script>scripts\getLayoutWidth.gml</script>
+    <script>scripts\getLayoutHeight.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oGrid</object>
