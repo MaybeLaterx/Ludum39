@@ -11,6 +11,9 @@
   <scripts name="scripts">
     <script>scripts\trace.gml</script>
   </scripts>
+  <objects name="objects">
+    <object>objects\oDestruct</object>
+  </objects>
   <help>
     <rtf>help.rtf</rtf>
   </help>
