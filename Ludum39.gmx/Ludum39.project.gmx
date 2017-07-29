@@ -8,11 +8,9 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts">
-    <script>scripts\trace.gml</script>
-  </scripts>
+  <scripts name="scripts"/>
   <objects name="objects">
-    <object>objects\oDestruct</object>
+    <object>objects\oGrid</object>
   </objects>
   <help>
     <rtf>help.rtf</rtf>
