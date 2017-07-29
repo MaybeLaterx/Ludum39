@@ -98,7 +98,16 @@ y2 = yOffset + height*size - size/2;
           <argument>
             <kind>1</kind>
             <string>/// Click resolutions
+if (i = i) { 
 
+}
+
+cell = ds_grid_get(grid,gx,gy);
+
+// Human turn options
+if (humanTurn) { 
+    
+}
 </string>
           </argument>
         </arguments>

@@ -17,9 +17,9 @@
     <sprite>sprites\sHumanFlashlight</sprite>
     <sprite>sprites\sHumanIdle</sprite>
     <sprite>sprites\sShadow</sprite>
-    <sprite>sprites\sShadow3</sprite>
     <sprite>sprites\sShadow1</sprite>
     <sprite>sprites\sShadow2</sprite>
+    <sprite>sprites\sShadow3</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
