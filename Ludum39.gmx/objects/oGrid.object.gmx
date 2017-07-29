@@ -7,7 +7,61 @@
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
-  <events/>
+  <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>layout = 
+"XXXXXXXXOOOXXXXXXXXX
+XXXXXXXOOOOOOOXXXXXX
+XXXXXXOOOOOOOOOOXXXX
+XXXXXOOOOOOOOOOOXXXX
+XXOOOOOOOOOOOOOOOXXX
+XOOOOOOOOOOOOOOOOOOO
+OOOOOOOOOOOOOOOOOOOX
+XXXOOOOOOOOOOOOOOOXX
+XXXXOOOOOOOOOOOOOXXX
+XXXXXXOOOOOOXXXXXXXX
+XXXXXXXXOOOXXXXXXXXX
+XXXXXXXXXXOXXXXXXXXX";
+
+break1 = string_pos("
+",layout);
+//trace("Break = " + string(break1));
+line1 = string_copy(layout,1,break1 - 1);
+width = string_length(line1);
+trace("Width = " + string(width));
+
+rows = string_count("
+",layout);
+height = rows + 1; 
+trace("Height = " + string(height));
+
+grid = ds_grid_create(width,height);
+
+
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+  </events>
   <PhysicsObject>0</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
   <PhysicsObjectShape>0</PhysicsObjectShape>

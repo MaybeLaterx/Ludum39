@@ -5,13 +5,29 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\sBattery</sprite>
+    <sprite>sprites\sLight0</sprite>
+    <sprite>sprites\sLight1</sprite>
+    <sprite>sprites\sLight2</sprite>
+    <sprite>sprites\sLight3</sprite>
+    <sprite>sprites\sLight4</sprite>
+    <sprite>sprites\sFloor</sprite>
+    <sprite>sprites\sHumanFlashlight</sprite>
+    <sprite>sprites\sHumanIdle</sprite>
+    <sprite>sprites\sShadow</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts"/>
+  <scripts name="scripts">
+    <script>scripts\trace.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\oGrid</object>
   </objects>
+  <rooms name="rooms">
+    <room>rooms\rGame</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
