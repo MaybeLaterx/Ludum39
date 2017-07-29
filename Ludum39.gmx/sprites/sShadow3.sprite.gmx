@@ -20,6 +20,6 @@
   <width>32</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\sprite12_shadow3_0.png</frame>
+    <frame index="0">images\sShadow3_0.png</frame>
   </frames>
 </sprite>
