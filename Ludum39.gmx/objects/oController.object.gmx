@@ -98,7 +98,6 @@ if (humanTurn) {
         humanX = findNextHuman("x",humanXX,humanYY);
         humanY = findNextHuman("y",humanXX,humanYY);
     }
-
 }
 </string>
           </argument>

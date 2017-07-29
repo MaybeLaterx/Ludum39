@@ -1,6 +1,6 @@
 //findNextHuman("x" or "y", xPrev, yPrev);     return int cell ID (x or y) 
 
-_request = "x";
+_request = argument0;
 _x = argument1 + 1; // don't want to find the same tile
 _y = argument2; 
 _grid = oGrid.grid; 
@@ -13,10 +13,10 @@ for (_i = _y; _i < _height; _i++) {
         if (_key == "H") {
             //trace("Found next player at (" + string(_j) + "," + string(_i) + ")"); 
             if (_request == "x") {
-                trace(_j); 
+                trace("X: " + string(_j)); 
                 return _j; 
             } else { 
-                trace(_i);
+                trace("Y: " + string(_i));
                 return _i;
             }
         }
@@ -24,11 +24,18 @@ for (_i = _y; _i < _height; _i++) {
 } 
 
 // If it couldn't be found, loop back from the start again
+trace("Starting from beginning"); 
 for (_i = 0; _i < _height; _i++) { 
     for (_j = 0; _j < _width; _j++) { 
+        _key = ds_grid_get(_grid,_j,_i);
         if (_key == "H") {
-            if (_request == "x") return _j; 
-            else return _i;
+            if (_request == "x") {
+                trace("X: " + string(_j)); 
+                return _j; 
+            } else { 
+                trace("Y: " + string(_i));
+                return _i;
+            }
         }
     }
 } 
