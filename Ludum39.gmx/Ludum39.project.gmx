@@ -12,8 +12,8 @@
     <sprite>sprites\sLight2</sprite>
     <sprite>sprites\sLight3</sprite>
     <sprite>sprites\sLight4</sprite>
+    <sprite>sprites\sWall</sprite>
     <sprite>sprites\sFloor</sprite>
-    <sprite>sprites\sTile</sprite>
     <sprite>sprites\sHumanFlashlight</sprite>
     <sprite>sprites\sHumanIdle</sprite>
     <sprite>sprites\sShadow</sprite>
@@ -33,6 +33,11 @@
     <object>objects\oGrid</object>
     <object>objects\oController</object>
     <object>objects\oSkip</object>
+    <object>objects\oHuman</object>
+    <object>objects\oBattery</object>
+    <object>objects\oFloor</object>
+    <object>objects\oShadow</object>
+    <object>objects\oWall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>

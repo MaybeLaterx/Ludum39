@@ -75,6 +75,29 @@ x1 = xOffset - size/2;
 y1 = yOffset - size/2;
 x2 = xOffset + width*size - size/2;
 y2 = yOffset + height*size - size/2; 
+
+for (i = 0; i &lt; height; i++) { 
+    for (j = 0; j &lt; width; j++) { 
+        tile = ds_grid_get(grid,j,i);
+        xx = xOffset + j*size; 
+        yy = yOffset + i*size;
+        
+        switch (tile) { 
+            case "H" : instance_create(xx,yy,oHuman); break;
+            case "B" : instance_create(xx,yy,oBattery); break;
+            case "0" : instance_create(xx,yy,oFloor); break;
+            case "1" : inst = instance_create(xx,yy,oShadow); inst.image_index = sShadow1; break;
+            case "2" : inst = instance_create(xx,yy,oShadow); inst.image_index = sShadow2; break;
+            case "3" : inst = instance_create(xx,yy,oShadow); inst.image_index = sShadow3; break;
+            case "X" : default : instance_create(xx,yy,oWall); break;
+        } 
+    }
+}
+
+
+
+ds_grid_destroy(grid); 
+instance_destroy(); 
 </string>
           </argument>
         </arguments>
@@ -98,16 +121,19 @@ y2 = yOffset + height*size - size/2;
           <argument>
             <kind>1</kind>
             <string>/// Click resolutions
-if (i = i) { 
-
-}
-
-cell = ds_grid_get(grid,gx,gy);
-
-// Human turn options
-if (humanTurn) { 
+if (mouse_check_button_pressed(mb_left)) { 
+    cell = ds_grid_get(grid,gx,gy);
+    trace(cell);
     
+    // Human turn options
+    if (oController.humanTurn) { 
+        
+    }
 }
+
+
+
+
 </string>
           </argument>
         </arguments>
@@ -159,7 +185,9 @@ if (humanTurn) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_center);
+            <string>/*
+
+draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
 for (i = 0; i &lt; height; i++) { 
