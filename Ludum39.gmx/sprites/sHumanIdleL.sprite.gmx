@@ -7,8 +7,8 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>0</bbox_left>
-  <bbox_right>21</bbox_right>
+  <bbox_left>15</bbox_left>
+  <bbox_right>31</bbox_right>
   <bbox_top>1</bbox_top>
   <bbox_bottom>30</bbox_bottom>
   <HTile>0</HTile>
@@ -20,13 +20,13 @@
   <width>32</width>
   <height>32</height>
   <frames>
-    <frame index="0">images\sHumanIdleR_0.png</frame>
-    <frame index="1">images\sHumanIdleR_1.png</frame>
-    <frame index="2">images\sHumanIdleR_2.png</frame>
-    <frame index="3">images\sHumanIdleR_3.png</frame>
-    <frame index="4">images\sHumanIdleR_4.png</frame>
-    <frame index="5">images\sHumanIdleR_5.png</frame>
-    <frame index="6">images\sHumanIdleR_6.png</frame>
-    <frame index="7">images\sHumanIdleR_7.png</frame>
+    <frame index="0">images\sHumanIdleL_0.png</frame>
+    <frame index="1">images\sHumanIdleL_1.png</frame>
+    <frame index="2">images\sHumanIdleL_2.png</frame>
+    <frame index="3">images\sHumanIdleL_3.png</frame>
+    <frame index="4">images\sHumanIdleL_4.png</frame>
+    <frame index="5">images\sHumanIdleL_5.png</frame>
+    <frame index="6">images\sHumanIdleL_6.png</frame>
+    <frame index="7">images\sHumanIdleL_7.png</frame>
   </frames>
 </sprite>

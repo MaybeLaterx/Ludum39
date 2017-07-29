@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>humanTurn = true; 
-maxMoves = 1; 
-movesLeft = 1; //maxMoves;
+maxMoves = 0; //1; 
+movesLeft = maxMoves;
 maxPowers = 1;  
-powersLeft = 1; //maxPowers; 
+powersLeft = maxPowers; 
 
 </string>
           </argument>
@@ -60,13 +60,41 @@ if (movesLeft == 0 &amp;&amp; powersLeft == 0) {
     powersLeft = maxPowers; 
     
     if (!instance_exists(oHuman)) room_goto_next(); 
+    if (!instance_exists(oShadow1) &amp;&amp; !instance_exists(oShadow2)) room_goto_next();
     
-    hasTempShadows = false; 
-    with (oShadow) if (image_index = sShadow1 || image_index = sShadow2) {
-        //#hasTempShadows = true; 
-        break; 
+    if (!humanTurn) {
+        m = 0; 
+        with (oShadow2) {
+            instance_create(x,y,oShadow3);
+            //other.spreads[other.m,0] = x; 
+            //other.spreads[other.m,1] = y;
+            //other.m++;
+            instance_destroy();
+            spread(x,y);
+        }
+        
+        for (i = 0; i &lt; instance_number(oShadow1); i++) {
+            inst = instance_find(oShadow1,i);
+            with (inst) {   
+                if (canGrow(x,y)) { 
+                    instance_create(x,y,oShadow2);
+                    instance_destroy();
+                    other.i--;
+                }
+            }
+        }
+        
+        //trace(m); 
+        //trace(array_length_2d(spreads,0));
+        //for (n = 0; n &lt; m; n++) { 
+        //    spread(spreads[n,0],spreads[n,1]);
+        //}
+        
+        with (oShadow0) { 
+            instance_create(x,y,oShadow1); 
+            instance_destroy();
+        }
     }
-    if (!hasTempShadows) room_goto_next();
 }
 
 /*    

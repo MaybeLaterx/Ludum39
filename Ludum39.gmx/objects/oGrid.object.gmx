@@ -38,7 +38,7 @@ XXXXXXXX0000000XXXXXXX
 XXXXXXX0000000000XXXXX
 XXXXXX00000000000XXXXX
 XXX0000000000H0000XXXX
-XX00000H00B0000000000X
+XX32231H00B0000000000X
 X0000000000000000000XX
 XXXX000000000000000XXX
 XXXXX0000000000000XXXX
@@ -90,9 +90,9 @@ for (i = 0; i &lt; height; i++) {
             case "H" : instance_create(xx,yy,oHuman); break;
             case "B" : instance_create(xx,yy,oBattery); break;
             case "0" : instance_create(xx,yy,oFloor); break;
-            case "1" : inst = instance_create(xx,yy,oShadow); inst.image_index = sShadow1; break;
-            case "2" : inst = instance_create(xx,yy,oShadow); inst.image_index = sShadow2; break;
-            case "3" : inst = instance_create(xx,yy,oShadow); inst.image_index = sShadow3; break;
+            case "1" : instance_create(xx,yy,oShadow1); break;
+            case "2" : instance_create(xx,yy,oShadow2); break;
+            case "3" : instance_create(xx,yy,oShadow3); break;
             case "X" : default : instance_create(xx,yy,oWall); break;
         } 
     }

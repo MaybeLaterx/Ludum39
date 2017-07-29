@@ -16,10 +16,16 @@
     <sprite>sprites\sFloor</sprite>
     <sprite>sprites\sHumanFlashlight</sprite>
     <sprite>sprites\sHumanIdleR</sprite>
+    <sprite>sprites\sHumanIdleU</sprite>
+    <sprite>sprites\sHumanIdleL</sprite>
+    <sprite>sprites\sHumanIdleD</sprite>
     <sprite>sprites\sShadow</sprite>
     <sprite>sprites\sShadow1</sprite>
     <sprite>sprites\sShadow2</sprite>
     <sprite>sprites\sShadow3</sprite>
+    <sprite>sprites\sArrowD</sprite>
+    <sprite>sprites\sArrowN</sprite>
+    <sprite>sprites\sOutline</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -29,6 +35,9 @@
     <script>scripts\getLayoutHeight.gml</script>
     <script>scripts\findNextHuman.gml</script>
     <script>scripts\isInside.gml</script>
+    <script>scripts\isSuitable.gml</script>
+    <script>scripts\canGrow.gml</script>
+    <script>scripts\spread.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oGrid</object>
@@ -37,8 +46,11 @@
     <object>objects\oHuman</object>
     <object>objects\oBattery</object>
     <object>objects\oFloor</object>
-    <object>objects\oShadow</object>
+    <object>objects\oShadow1</object>
+    <object>objects\oShadow2</object>
+    <object>objects\oShadow3</object>
     <object>objects\oWall</object>
+    <object>objects\oShadow0</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>

@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>quadrant = 0;
+            <string>image_speed = 0.25; 
+quadrant = 0;
 size = 32; 
 
 selected = false; 
@@ -64,14 +65,24 @@ shining = false;
 // Shine light
 if (selected) { 
     if (mouse_check_button_pressed(mb_left) &amp;&amp; quadrant != 0 &amp;&amp; !inside &amp;&amp; oController.powersLeft &gt; 0) { 
+        selected = false;
         shining = true;
         oController.powersLeft--;
         timer = 35;
         for (i = 0; i &lt; 5; i++) {
             lx = x + xd*size*(i+1);
             ly = y + yd*size*(i+1);
-            trace(string(i) + " " + string(lx) + " " + string(ly));
-            if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman)) break;
+            //trace(string(i) + " " + string(lx) + " " + string(ly));
+            if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman) || place_meeting(lx,ly,oShadow3)) break;
+            
+            if (place_meeting(lx,ly,oShadow1) || place_meeting(lx,ly,oShadow2)) { 
+                shadow = instance_position(lx,ly,oShadow1);
+                if (shadow == noone) shadow = instance_position(lx,ly,oShadow2);
+                if (shadow != noone) { 
+                    instance_create(lx,ly,oFloor);
+                    with (shadow) instance_destroy();
+                }
+            }
             draw_sprite_ext(lights[i], 0, lx, ly, 1, 1, dir, c_white, 1);
         }
     }
@@ -119,7 +130,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController
           <argument>
             <kind>1</kind>
             <string>draw_sprite(sFloor,0,x,y);
-if (selected) draw_sprite_ext(sHumanIdle,0,x,y,1.2,1.2,0,c_red,1)
+if (selected) draw_sprite(sOutline,0,x,y);
 draw_self(); 
 
 // Hover light options
@@ -137,43 +148,45 @@ pd = point_direction(x,y,mouse_x,mouse_y);
             xd = 1; 
             yd = 0;
             dir = 0;
+            sprite_index = sHumanIdleR;
             break; 
         case 2 : 
             xd = 0; 
             yd = -1;
-            dir = 90; 
+            dir = 90;
+            sprite_index = sHumanIdleU; 
             break; 
         case 3 : 
             xd = -1; 
             yd = 0;
             dir = 180; 
+            sprite_index = sHumanIdleL;
             break; 
         case 4 : 
             xd = 0; 
             yd = 1;
             dir = 270;  
+            sprite_index = sHumanIdleD;
             break;
     } 
     
     for (i = 0; i &lt; 5; i++) {
         lx = x + xd*size*(i+1);
         ly = y + yd*size*(i+1);
-        trace(string(i) + " " + string(lx) + " " + string(ly));
-        if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman)) break;
-        draw_sprite_ext(lights[i], 0, lx, ly, 1, 1, dir, c_white, 0.25);
-    }
+        //trace(string(i) + " " + string(lx) + " " + string(ly));
+        if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman) || place_meeting(lx,ly,oShadow3)) break;
 
-    //switch (quadrant) { 
-    
-    //}    
+        draw_sprite_ext(lights[i], 0, lx, ly, 1, 1, dir, c_white, 0.25);
+    }   
 }
 
 if (shining) { 
     for (i = 0; i &lt; 5; i++) {
         lx = x + xd*size*(i+1);
         ly = y + yd*size*(i+1);
-        trace(string(i) + " " + string(lx) + " " + string(ly));
-        if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman)) break;
+        //trace(string(i) + " " + string(lx) + " " + string(ly));
+        if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman) || place_meeting(lx,ly,oShadow3)) break;
+        
         draw_sprite_ext(lights[i], 0, lx, ly, 1, 1, dir, c_white, 1);
     }
 }
