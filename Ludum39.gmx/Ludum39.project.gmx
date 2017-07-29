@@ -13,6 +13,7 @@
     <sprite>sprites\sLight3</sprite>
     <sprite>sprites\sLight4</sprite>
     <sprite>sprites\sFloor</sprite>
+    <sprite>sprites\sTile</sprite>
     <sprite>sprites\sHumanFlashlight</sprite>
     <sprite>sprites\sHumanIdle</sprite>
     <sprite>sprites\sShadow</sprite>
@@ -23,9 +24,12 @@
     <script>scripts\trace.gml</script>
     <script>scripts\getLayoutWidth.gml</script>
     <script>scripts\getLayoutHeight.gml</script>
+    <script>scripts\findNextHuman.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oGrid</object>
+    <object>objects\oController</object>
+    <object>objects\oSkip</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>

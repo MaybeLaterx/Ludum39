@@ -25,48 +25,81 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>size = sprite_get_width(sFloor); 
-offset = 200;
+            <string>humanTurn = false; 
+maxMoves = 1; 
+movesLeft = 0; //maxMoves;
+maxPowers = 1;  
+powersLeft = 0; //maxPowers; 
 
-// LAYOUT MUST BE COMPLETELY ENCLOSED BY X'S
-layout = 
-"XXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXX000XXXXXXXXXX
-XXXXXXXX0000000XXXXXXX
-XXXXXXX0000000000XXXXX
-XXXXXX00000000000XXXXX
-XXX0000000000H0000XXXX
-XX00000H00B0000000000X
-X0000000000000000000XX
-XXXX000000000000000XXX
-XXXXX0000000000000XXXX
-XXXXXXX000000XXXXXXXXX
-XXXXXXXXX000XXXXXXXXXX
-XXXXXXXXXXX0XXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXX";
-
-width = getLayoutWidth(layout);
-height = getLayoutHeight(layout); 
-
-grid = ds_grid_create(width,height);
-
-for (i = 0; i &lt; height; i++) { 
-    for (j = 0; j &lt; width; j++) { 
-        pos = 1 + i*(width+2) + j;
-        trace(pos);
-        thisChar = string_char_at(layout,pos);//1 + height*width + width);
-        if (thisChar != "
-") { 
-            //trace(thisChar);
-            //if (thisChar == "O") glyph = "O"; 
-            //else glyph = "X";
-            ds_grid_set(grid,j,i,thisChar);
-        }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// End turn
+if (movesLeft == 0 &amp;&amp; powersLeft == 0) { 
+    humanTurn = !humanTurn;
+    movesLeft = maxMoves; 
+    powersLeft = maxPowers; 
+    
+    if (humanTurn) { 
+        trace("Finding first human"); 
+        humanX = findNextHuman("x",0,0);
+        humanY = findNextHuman("y",0,0);
+        
+        if (humanX == -1 || humanY == -1) room_goto_next();        
     }
 }
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Human turn options
+if (humanTurn) { 
+    if (keyboard_check_pressed(vk_tab)) { 
+        trace("Finding next human"); 
+        humanXX = humanX; 
+        humanYY = humanY; 
+        humanX = findNextHuman("x",humanXX,humanYY);
+        humanY = findNextHuman("y",humanXX,humanYY);
+    }
 
+}
 </string>
           </argument>
         </arguments>
@@ -89,21 +122,12 @@ for (i = 0; i &lt; height; i++) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_halign(fa_center);
-draw_set_valign(fa_middle);
+            <string>draw_set_color(c_white);
+draw_set_halign(fa_left);
 
-for (i = 0; i &lt; height; i++) { 
-    for (j = 0; j &lt; width; j++) { 
-        tile = ds_grid_get(grid,j,i);
-        xx = offset + j*size; 
-        yy = offset + i*size;
-        if (tile != "X") draw_sprite(sTile,0,xx,yy); 
-        else draw_sprite(sFloor,0,xx,yy);
-        
-        if (tile == "H") draw_sprite(sHumanIdle,0,xx,yy);
-        else if (tile == "B") draw_sprite(sBattery,0,xx,yy);
-    }
-}
+draw_text(x,y,"Moves remaining: " + string(movesLeft)); 
+draw_text(x,y + 35,"Powers remaining: " + string(powersLeft)); 
+
 </string>
           </argument>
         </arguments>
