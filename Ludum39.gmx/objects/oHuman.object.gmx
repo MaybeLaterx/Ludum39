@@ -155,6 +155,7 @@ if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &
     if (flr != noone) { 
         newHuman = instance_create(flr.x,flr.y,oHuman);
         with (newHuman) { 
+            selected = true;
             if (!isBatteryAdjacent(x,y)) { 
                 charge = other.charge;   
             } else if (other.charge &lt; maxCharge) {

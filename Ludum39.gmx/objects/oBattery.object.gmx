@@ -49,6 +49,19 @@
           <argument>
             <kind>1</kind>
             <string>draw_sprite(sFloor,0,x,y);
+
+if (isInside(x,y)) { 
+    for (i = 0; i &lt; 3; i++) { 
+        for (j = 0; j &lt; 3; j++) { 
+            //if (i != 1 || j != 1) { 
+                xx = x - 32 + (32*j); 
+                yy = y - 32 + (32*i); 
+                draw_sprite(sLight1,0,xx,yy); 
+            //}
+        }
+    }
+}
+
 draw_self(); 
 
 </string>

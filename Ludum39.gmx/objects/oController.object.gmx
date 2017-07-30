@@ -66,6 +66,8 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
     else powersLeft = maxShadowPowers;
     
     if (!humanTurn) {
+        with (oHuman) selected = false;
+    
         turnsElapsed++; 
         with (oShadow2) {
             instance_create(x,y,oShadow3);
@@ -95,7 +97,7 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
         }
         with (oHuman) depth = -4; 
         
-        if (turnsElapsed &gt; 29) room_goto(rHumans);
+        if (turnsElapsed &gt; 19) room_goto(rHumans);
     } else { 
         with (oShadow1) depth = -4; 
         with (oHuman) depth = -5; 
