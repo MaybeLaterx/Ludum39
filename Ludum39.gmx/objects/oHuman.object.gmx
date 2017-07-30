@@ -111,7 +111,8 @@ if (mouse_check_button_pressed(mb_right)) {
             <kind>1</kind>
             <string>// Shine light
 if (selected) { 
-    if (mouse_check_button_pressed(mb_left) &amp;&amp; quadrant != 0 &amp;&amp; !inside &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent) { 
+    if (mouse_check_button_pressed(mb_left) &amp;&amp; quadrant != 0 &amp;&amp; !inside &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent &amp;&amp; charge &gt; 0) { 
+        if (!isBatteryAdjacent(x,y)) charge--;
         selected = false;
         shining = true;
         oController.powersLeft--;
@@ -120,7 +121,6 @@ if (selected) {
         for (i = 0; i &lt; 5; i++) {
             lx = x + xd*size*(i+1);
             ly = y + yd*size*(i+1);
-            //trace(string(i) + " " + string(lx) + " " + string(ly));
             if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman) || place_meeting(lx,ly,oShadow3)) break;
             
             if (place_meeting(lx,ly,oShadow1) || place_meeting(lx,ly,oShadow2)) { 
@@ -152,7 +152,12 @@ if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &
     flr = instance_position(mouse_x,mouse_y,oFloor);
     if (flr != noone) { 
         newHuman = instance_create(flr.x,flr.y,oHuman);
-        newHuman.charge = charge; 
+        with (newHuman) { 
+            if (isBatteryAdjacent(x,y)) { 
+                charge = maxCharge;
+                audio_play_sound(sndRecharge,0,false); 
+            } else charge = other.charge;
+        }
         instance_create(x,y,oFloor); 
         with (flr) instance_destroy(); 
         instance_destroy();
@@ -183,11 +188,14 @@ if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &
           <argument>
             <kind>1</kind>
             <string>draw_sprite(sFloor,0,x,y);
-if (selected) draw_sprite(sOutline,0,x,y);
+if (selected) {
+    draw_sprite(sOutline,0,x,y);
+    draw_text(700,100,"Charge remaining: " + string(charge));
+}
 draw_self(); 
 
 // Hover light options
-if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent) { 
+if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent &amp;&amp; charge &gt; 0) { 
 pd = point_direction(x,y,mouse_x,mouse_y);
     if (pd &gt; 315 || pd &lt; 45) quadrant = 1; 
     else if (pd &gt; 45 &amp;&amp; pd &lt; 135) quadrant = 2; 

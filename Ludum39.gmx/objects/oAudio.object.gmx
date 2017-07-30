@@ -53,7 +53,7 @@
 &amp;&amp; !audio_is_playing(sndMusic2) 
 &amp;&amp; !audio_is_playing(sndMusic3)) { 
     // One player left 
-    if (instance_number(oHuman) &gt; 2) music = sndMusic3; 
+    if (instance_number(oHuman) &lt; 2) music = sndMusic3; 
     else { // Check Floor to Shadow3 ratio
         shadows = instance_number(oShadow3);
         floors = instance_number(oFloor);

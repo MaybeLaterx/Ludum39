@@ -55,7 +55,11 @@
     <script>scripts\canGrow.gml</script>
     <script>scripts\spread.gml</script>
     <script>scripts\isAdjacent.gml</script>
+    <script>scripts\isBatteryAdjacent.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fntCubic</font>
+  </fonts>
   <objects name="objects">
     <object>objects\oGrid</object>
     <object>objects\oController</object>
