@@ -97,7 +97,7 @@ if (shining) {
 }
 
 // Move
-if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &amp;&amp; adjacent) {
+if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &amp;&amp; adjacent &amp;&amp; oController.movesLeft &gt; 0) {
     oController.movesLeft--;
     flr = instance_position(mouse_x,mouse_y,oFloor);
     if (flr != noone) { 
