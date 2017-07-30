@@ -25,11 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>humanTurn = true; 
+            <string>humanTurn = false; 
 maxMoves = 2; //3 
 movesLeft = maxMoves;
 maxPowers = 2;  
-powersLeft = maxPowers; 
+powersLeft = 5; 
 
 turnsElapsed = 1;
 

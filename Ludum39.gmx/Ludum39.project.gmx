@@ -17,6 +17,7 @@
     <sound>sound\sndHumanDeath</sound>
     <sound>sound\sndError</sound>
     <sound>sound\sndFlashlight</sound>
+    <sound>sound\sndSelect</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sBattery</sprite>

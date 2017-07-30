@@ -73,6 +73,8 @@ room_restart();
             <kind>1</kind>
             <string>oController.movesLeft = 0; 
 oController.powersLeft = 0; 
+
+audio_play_sound(sndSelect,0,false);
 </string>
           </argument>
         </arguments>

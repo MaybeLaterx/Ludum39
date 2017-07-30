@@ -56,11 +56,21 @@ adjacent = false;
 
 adjacent = isAdjacent(x,y); 
 
-// Select/deselect
+// Select
 if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn) { 
-    selected = !selected; 
-    if (selected) trace("Shadow selected");
-    else trace("Shadow deselected");
+    if (!selected) { 
+        selected = true; 
+        trace("Shadow selected");
+    } else { 
+        // Upgrade
+        if (oController.powersLeft &gt; 0) { 
+            trace("Shadow upgraded");
+            instance_create(x,y,oShadow2); 
+            instance_destroy(); 
+            oController.powersLeft--;
+        }
+    }
+    
     
     if (selected) { 
         with (oShadow1) if (id != other.id) selected = false;  
