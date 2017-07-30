@@ -106,7 +106,10 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
                 }
             }
             
-            if (kill) audio_play_sound(sndHumanDeath,0,false); 
+            if (kill) {
+                audio_play_sound(sndHumanDeath,0,false); 
+                if (!instance_exists(oHuman)) room_goto(rShadows);
+            }
             
             instance_create(x,y,oFloor); 
             instance_destroy(); 

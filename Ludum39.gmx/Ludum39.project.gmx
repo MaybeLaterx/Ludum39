@@ -15,6 +15,8 @@
     <sound>sound\sndRecharge</sound>
     <sound>sound\sndShadowDeath</sound>
     <sound>sound\sndHumanDeath</sound>
+    <sound>sound\sndError</sound>
+    <sound>sound\sndFlashlight</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sBattery</sprite>

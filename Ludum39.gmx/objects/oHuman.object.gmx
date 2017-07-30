@@ -116,6 +116,7 @@ if (selected) {
         shining = true;
         oController.powersLeft--;
         timer = 35;
+        kill = false;
         for (i = 0; i &lt; 5; i++) {
             lx = x + xd*size*(i+1);
             ly = y + yd*size*(i+1);
@@ -123,6 +124,7 @@ if (selected) {
             if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman) || place_meeting(lx,ly,oShadow3)) break;
             
             if (place_meeting(lx,ly,oShadow1) || place_meeting(lx,ly,oShadow2)) { 
+                kill = true;
                 shadow = instance_position(lx,ly,oShadow1);
                 if (shadow == noone) shadow = instance_position(lx,ly,oShadow2);
                 if (shadow != noone) { 
@@ -130,8 +132,12 @@ if (selected) {
                     with (shadow) instance_destroy();
                 }
             }
-            draw_sprite_ext(lights[i], 0, lx, ly, 1, 1, dir, c_white, 1);
         }
+        
+        if (kill) audio_play_sound(sndShadowDeath,0,false); 
+        
+        if (!instance_exists(oShadow1) &amp;&amp; !instance_exists(oShadow2)) room_goto(rHumans);
+        else audio_play_sound(sndFlashlight,0,false); 
     }
 }
 

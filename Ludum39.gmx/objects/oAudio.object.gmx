@@ -49,7 +49,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (audio_is_playing(sndMusic1) 
+            <string>if (!audio_is_playing(sndMusic1) 
 &amp;&amp; !audio_is_playing(sndMusic2) 
 &amp;&amp; !audio_is_playing(sndMusic3)) { 
     // One player left 
