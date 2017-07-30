@@ -25,9 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = room_width/2; 
-y = room_height/2; 
-
+            <string>
 size = sprite_get_width(sFloor); 
 
 // LAYOUT MUST BE COMPLETELY ENCLOSED BY X'S
@@ -115,8 +113,15 @@ Selected level:
 
 " + layout); 
 
+
 width = getLayoutWidth(layout);
 height = getLayoutHeight(layout); 
+
+room_height = height*size; 
+room_width = width*size;
+
+x = room_width/2; 
+y = room_height/2; 
 
 grid = ds_grid_create(width,height);
 

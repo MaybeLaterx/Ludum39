@@ -80,6 +80,7 @@
     <object>objects\oHumansScreen</object>
     <object>objects\oShadowsScreen</object>
     <object>objects\oShadow1Death</object>
+    <object>objects\oCamera</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>
