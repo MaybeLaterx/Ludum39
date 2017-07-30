@@ -43,6 +43,8 @@
     <sprite>sprites\sOutlineCross</sprite>
     <sprite>sprites\sShadowsWin</sprite>
     <sprite>sprites\sHumansWin</sprite>
+    <sprite>sprites\sShadow1Death</sprite>
+    <sprite>sprites\sSkull</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -77,6 +79,7 @@
     <object>objects\oMenuButton</object>
     <object>objects\oHumansScreen</object>
     <object>objects\oShadowsScreen</object>
+    <object>objects\oShadow1Death</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>
