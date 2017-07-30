@@ -25,10 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>humanTurn = false; 
-maxMoves = 2; //3 
-movesLeft = maxMoves;
-maxPowers = 2;  
+            <string>humanTurn = false;
+
+maxMoves = 2; 
+movesLeft = maxMoves; 
+
+maxHumanPowers = 2; 
+maxShadowPowers = 3; 
 powersLeft = 5; 
 
 turnsElapsed = 1;
@@ -59,7 +62,8 @@ turnsElapsed = 1;
 if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) { 
     humanTurn = !humanTurn;
     movesLeft = maxMoves; 
-    powersLeft = maxPowers; 
+    if (humanTurn) powersLeft = maxHumanPowers; 
+    else powersLeft = maxShadowPowers;
     
     if (!humanTurn) {
         turnsElapsed++; 
@@ -85,7 +89,10 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             instance_destroy();
         }
         
-        with (oShadow1) depth = -5; 
+        with (oShadow1) {
+            depth = -5; 
+            canAttack = true;
+        }
         with (oHuman) depth = -4; 
         
         if (turnsElapsed &gt; 29) room_goto(rHumans);
