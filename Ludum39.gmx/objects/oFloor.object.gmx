@@ -85,7 +85,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
 if (inside &amp;&amp; !oController.humanTurn) { 
     suitable = isSuitable(x,y);
     if (suitable) draw_sprite(sOutline,0,x,y);
-    else draw_sprite_ext(sOutline,0,x,y,1,1,0,c_red,0.75);
+    else draw_sprite_ext(sOutlineCross,0,x,y,1,1,0,-1,0.75);
 }
 
 </string>

@@ -26,6 +26,7 @@
     <sprite>sprites\sArrowD</sprite>
     <sprite>sprites\sArrowN</sprite>
     <sprite>sprites\sOutline</sprite>
+    <sprite>sprites\sOutlineCross</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -38,6 +39,7 @@
     <script>scripts\isSuitable.gml</script>
     <script>scripts\canGrow.gml</script>
     <script>scripts\spread.gml</script>
+    <script>scripts\isAdjacent.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oGrid</object>
@@ -46,11 +48,11 @@
     <object>objects\oHuman</object>
     <object>objects\oBattery</object>
     <object>objects\oFloor</object>
+    <object>objects\oShadow0</object>
     <object>objects\oShadow1</object>
     <object>objects\oShadow2</object>
     <object>objects\oShadow3</object>
     <object>objects\oWall</object>
-    <object>objects\oShadow0</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>

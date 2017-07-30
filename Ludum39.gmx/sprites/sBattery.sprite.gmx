@@ -21,5 +21,20 @@
   <height>32</height>
   <frames>
     <frame index="0">images\sBattery_0.png</frame>
+    <frame index="1">images\sBattery_1.png</frame>
+    <frame index="2">images\sBattery_2.png</frame>
+    <frame index="3">images\sBattery_3.png</frame>
+    <frame index="4">images\sBattery_4.png</frame>
+    <frame index="5">images\sBattery_5.png</frame>
+    <frame index="6">images\sBattery_6.png</frame>
+    <frame index="7">images\sBattery_7.png</frame>
+    <frame index="8">images\sBattery_8.png</frame>
+    <frame index="9">images\sBattery_9.png</frame>
+    <frame index="10">images\sBattery_10.png</frame>
+    <frame index="11">images\sBattery_11.png</frame>
+    <frame index="12">images\sBattery_12.png</frame>
+    <frame index="13">images\sBattery_13.png</frame>
+    <frame index="14">images\sBattery_14.png</frame>
+    <frame index="15">images\sBattery_15.png</frame>
   </frames>
 </sprite>

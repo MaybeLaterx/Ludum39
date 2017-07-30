@@ -28,16 +28,17 @@
             <string>image_speed = 0.25; 
 quadrant = 0;
 size = 32; 
+charge = 3;
 
 selected = false; 
+adjacent = false; 
+shining = false;
 
 lights[0] = sLight0; 
 lights[1] = sLight1; 
 lights[2] = sLight2; 
 lights[3] = sLight3; 
 lights[4] = sLight4; 
-
-shining = false; 
 </string>
           </argument>
         </arguments>
@@ -62,9 +63,11 @@ shining = false;
             <kind>1</kind>
             <string>inside = isInside(x,y);
 
+adjacent = isAdjacent(x,y); 
+
 // Shine light
 if (selected) { 
-    if (mouse_check_button_pressed(mb_left) &amp;&amp; quadrant != 0 &amp;&amp; !inside &amp;&amp; oController.powersLeft &gt; 0) { 
+    if (mouse_check_button_pressed(mb_left) &amp;&amp; quadrant != 0 &amp;&amp; !inside &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent) { 
         selected = false;
         shining = true;
         oController.powersLeft--;
@@ -93,6 +96,18 @@ if (shining) {
     else timer--; 
 }
 
+// Move
+if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &amp;&amp; adjacent) {
+    oController.movesLeft--;
+    flr = instance_position(mouse_x,mouse_y,oFloor);
+    if (flr != noone) { 
+        newHuman = instance_create(flr.x,flr.y,oHuman);
+        newHuman.charge = charge; 
+        instance_create(x,y,oFloor); 
+        with (flr) instance_destroy(); 
+        instance_destroy();
+    }
+}
 
 // Select/deselect
 if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController.humanTurn) { 
@@ -134,7 +149,7 @@ if (selected) draw_sprite(sOutline,0,x,y);
 draw_self(); 
 
 // Hover light options
-if (selected &amp;&amp; oController.powersLeft &gt; 0) { 
+if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent) { 
 pd = point_direction(x,y,mouse_x,mouse_y);
     if (pd &gt; 315 || pd &lt; 45) quadrant = 1; 
     else if (pd &gt; 45 &amp;&amp; pd &lt; 135) quadrant = 2; 
@@ -179,6 +194,24 @@ pd = point_direction(x,y,mouse_x,mouse_y);
         draw_sprite_ext(lights[i], 0, lx, ly, 1, 1, dir, c_white, 0.25);
     }   
 }
+
+// Hover movement options
+if (adjacent &amp;&amp; selected &amp;&amp; oController.movesLeft &gt; 0 &amp; !inside) { 
+    flr = instance_position(mouse_x,mouse_y,oFloor);
+    trace(flr);
+    if (flr != noone) { 
+        if (flr.x != x &amp;&amp; flr.y != y) arrow = sArrowD
+        else arrow = sArrowN; 
+        
+        //rot = floor(point_direction(x,y,mouse_x,mouse_y)/90)*90;
+        if (flr.x &gt; x &amp;&amp; flr.y &lt;= y) rot = 0; 
+        else if (flr.y &lt; y &amp;&amp; flr.x &lt;= x) rot = 90; 
+        else if (flr.x &lt; x &amp;&amp; flr.y &gt;= y) rot = 180; 
+        else rot = 270;
+        draw_sprite_ext(arrow,0,flr.x,flr.y,1,1,rot,-1,1); 
+    }
+}
+
 
 if (shining) { 
     for (i = 0; i &lt; 5; i++) {
