@@ -150,7 +150,6 @@ if (shining) {
 
 // Move
 if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &amp;&amp; adjacent &amp;&amp; oController.movesLeft &gt; 0) {
-    oController.movesLeft--;
     flr = instance_position(mouse_x,mouse_y,oFloor);
     if (flr != noone) { 
         newHuman = instance_create(flr.x,flr.y,oHuman);
@@ -163,6 +162,7 @@ if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &
                 audio_play_sound(sndRecharge,0,false); 
             }
         }
+        oController.movesLeft--;
         instance_create(x,y,oFloor); 
         with (flr) instance_destroy(); 
         instance_destroy();

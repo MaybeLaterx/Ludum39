@@ -92,6 +92,8 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
     if (tile != noone) { 
         type = tile.object_index; 
         if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+            oController.powersLeft--;
+            
             // get centre coords 
             if (mouse_x &gt; x + 16) xx = x + 32; 
             else if (mouse_x &lt; x - 16) xx = x - 32; 
