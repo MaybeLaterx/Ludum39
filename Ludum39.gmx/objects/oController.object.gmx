@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>humanTurn = true; 
-maxMoves = 3; 
+maxMoves = 0; //3 
 movesLeft = maxMoves;
 maxPowers = 1;  
 powersLeft = maxPowers; 
@@ -61,17 +61,13 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
     movesLeft = maxMoves; 
     powersLeft = maxPowers; 
     
-    if (!instance_exists(oHuman)) room_goto_next(); 
-    if (!instance_exists(oShadow1) &amp;&amp; !instance_exists(oShadow2)) room_goto_next();
+    if (!instance_exists(oHuman)) room_goto(rShadows); 
+    if (!instance_exists(oShadow1) &amp;&amp; !instance_exists(oShadow2)) room_goto(rHumans);
     
     if (!humanTurn) {
         turnsElapsed++; 
-        m = 0; 
         with (oShadow2) {
             instance_create(x,y,oShadow3);
-            //other.spreads[other.m,0] = x; 
-            //other.spreads[other.m,1] = y;
-            //other.m++;
             instance_destroy();
             spread(x,y);
         }
@@ -87,28 +83,20 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             }
         }
         
-        //trace(m); 
-        //trace(array_length_2d(spreads,0));
-        //for (n = 0; n &lt; m; n++) { 
-        //    spread(spreads[n,0],spreads[n,1]);
-        //}
-        
         with (oShadow0) { 
             instance_create(x,y,oShadow1); 
             instance_destroy();
         }
+        
+        with (oShadow1) depth = -5; 
+        with (oHuman) depth = -4; 
+        
+        if (turnsElapsed &gt; 29) room_goto(rHumans);
+    } else { 
+        with (oShadow1) depth = -4; 
+        with (oHuman) depth = -5; 
     }
 }
-
-/*    
-    if (humanTurn) { 
-        trace("Finding first human"); 
-        humanX = findNextHuman("x",0,0);
-        humanY = findNextHuman("y",0,0);
-        
-        if (humanX == -1 || humanY == -1) room_goto_next();        
-    }
-
 </string>
           </argument>
         </arguments>
@@ -136,9 +124,10 @@ draw_set_halign(fa_left);
 
 if (humanTurn) turnText = "Humans' Turn"; 
 else turnText = "Shadows' Turn";
-draw_text(x,y,turnText);
+draw_text(x,y,turnText + " (Turns elapsed: " + string(turnsElapsed) + ")");
 draw_text(x,y + 35,"Powers remaining: " + string(powersLeft)); 
 if (humanTurn) draw_text(x,y + 70,"Moves remaining: " + string(movesLeft)); 
+
 
 
 </string>

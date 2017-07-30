@@ -3,7 +3,7 @@
   <spriteName>sFloor</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>3</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>suitable = false;
 inside = false; 
+shadowSelected = false;
 </string>
           </argument>
         </arguments>
@@ -51,8 +52,11 @@ inside = false;
             <kind>1</kind>
             <string>inside = isInside(x,y);
 
+shadowSelected = false; 
+with (oShadow1) if (selected) other.shadowSelected = true; 
+
 // Fill with shadow
-if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable) { 
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable &amp;&amp; !shadowSelected) { 
     instance_create(x,y,oShadow1);
     oController.powersLeft--; 
     instance_destroy(); 
@@ -82,7 +86,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
             <string>draw_self(); 
 
 // Hover effect
-if (inside &amp;&amp; !oController.humanTurn) { 
+if (inside &amp;&amp; !oController.humanTurn &amp;&amp; !shadowSelected) { 
     suitable = isSuitable(x,y);
     if (suitable) draw_sprite(sOutline,0,x,y);
     else draw_sprite_ext(sOutlineCross,0,x,y,1,1,0,-1,0.75);

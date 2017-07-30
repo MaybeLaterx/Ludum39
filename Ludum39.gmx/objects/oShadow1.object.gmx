@@ -3,7 +3,7 @@
   <spriteName>sShadow1</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-4</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,95 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0.25; 
+
+selected = false; 
+
+adjacent = false; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>inside = isInside(x,y); 
+
+adjacent = isAdjacent(x,y); 
+
+// Select/deselect
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn) { 
+    selected = !selected; 
+    if (selected) trace("Shadow selected");
+    else trace("Shadow deselected");
+    
+    if (selected) { 
+        with (oShadow1) if (id != other.id) selected = false;  
+    }
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+    if (selected) { 
+        trace("Shadow deselected"); 
+        selected = false;
+    } 
+}
+
+// Attack
+if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_button_pressed(mb_left)) { 
+    tile = instance_position(mouse_x,mouse_y,all);
+    if (tile != noone) { 
+        type = tile.object_index; 
+        if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+            // get centre coords 
+            if (mouse_x &gt; x + 16) xx = x + 32; 
+            else if (mouse_x &lt; x - 16) xx = x - 32; 
+            else xx = x; 
+            
+            if (mouse_y &gt; y + 16) yy = y + 32; 
+            else if (mouse_y &lt; y - 16) yy = y - 32; 
+            else yy = y; 
+       
+            // Kill adjacent humans
+            kill = false;
+            for (i = 0; i &lt; 3; i++) { 
+                for (j = 0; j &lt; 3; j++) { 
+                    xxx = xx - 32 + (32*j);
+                    yyy = yy - 32 + (32*i);
+                    humanTarget = instance_position(xxx,yyy,oHuman); 
+                    if (humanTarget != noone) { 
+                        with (humanTarget) { 
+                            instance_create(x,y,oFloor); 
+                            instance_destroy();
+                        }
+                        kill = true;
+                    }
+                }
+            }
+            
+            if (kill) audio_play_sound(sndHumanDeath,0,false); 
+            
+            instance_create(x,y,oFloor); 
+            instance_destroy(); 
+        }
+    }
+}
+
+
 </string>
           </argument>
         </arguments>
@@ -49,8 +138,23 @@
           <argument>
             <kind>1</kind>
             <string>draw_sprite(sFloor,0,x,y);
+if (selected) draw_sprite(sOutline,0,x,y);
 draw_self(); 
 
+// Hover attack options
+if (adjacent &amp;&amp; selected &amp;&amp; !inside) { 
+    tile = instance_position(mouse_x,mouse_y,all);
+    if (tile != noone) { 
+        type = tile.object_index; 
+        if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+            if (tile.x &gt; x &amp;&amp; tile.y &lt;= y) rot = 0; 
+            else if (tile.y &lt; y &amp;&amp; tile.x &lt;= x) rot = 90; 
+            else if (tile.x &lt; x &amp;&amp; tile.y &gt;= y) rot = 180; 
+            else rot = 270;
+            draw_sprite_ext(sArrowN,0,tile.x,tile.y,1,1,rot,-1,1); 
+        }
+    }
+}
 </string>
           </argument>
         </arguments>

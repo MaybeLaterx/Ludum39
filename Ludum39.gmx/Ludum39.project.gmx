@@ -4,7 +4,18 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="Music">
+      <sound>sound\sndShadowWin</sound>
+      <sound>sound\sndHumanWin</sound>
+      <sound>sound\sndMusic1</sound>
+      <sound>sound\sndMusic2</sound>
+      <sound>sound\sndMusic3</sound>
+    </sounds>
+    <sound>sound\sndRecharge</sound>
+    <sound>sound\sndShadowDeath</sound>
+    <sound>sound\sndHumanDeath</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sBattery</sprite>
     <sprite>sprites\sLight0</sprite>
@@ -27,6 +38,8 @@
     <sprite>sprites\sArrowN</sprite>
     <sprite>sprites\sOutline</sprite>
     <sprite>sprites\sOutlineCross</sprite>
+    <sprite>sprites\sShadowsWin</sprite>
+    <sprite>sprites\sHumansWin</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -45,6 +58,7 @@
     <object>objects\oGrid</object>
     <object>objects\oController</object>
     <object>objects\oSkip</object>
+    <object>objects\oAudio</object>
     <object>objects\oHuman</object>
     <object>objects\oBattery</object>
     <object>objects\oFloor</object>
@@ -53,9 +67,15 @@
     <object>objects\oShadow2</object>
     <object>objects\oShadow3</object>
     <object>objects\oWall</object>
+    <object>objects\oMenuButton</object>
+    <object>objects\oHumansScreen</object>
+    <object>objects\oShadowsScreen</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rGame</room>
+    <room>rooms\rShadows</room>
+    <room>rooms\rHumans</room>
+    <room>rooms\rStart</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
