@@ -198,7 +198,7 @@ pd = point_direction(x,y,mouse_x,mouse_y);
 // Hover movement options
 if (adjacent &amp;&amp; selected &amp;&amp; oController.movesLeft &gt; 0 &amp; !inside) { 
     flr = instance_position(mouse_x,mouse_y,oFloor);
-    trace(flr);
+    //trace(flr);
     if (flr != noone) { 
         if (flr.x != x &amp;&amp; flr.y != y) arrow = sArrowD
         else arrow = sArrowN; 

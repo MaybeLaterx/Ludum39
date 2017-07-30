@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>humanTurn = true; 
-maxMoves = 1; 
+maxMoves = 3; 
 movesLeft = maxMoves;
 maxPowers = 1;  
 powersLeft = maxPowers; 
