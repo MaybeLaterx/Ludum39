@@ -20,6 +20,7 @@
     <sound>sound\sndFlashlight</sound>
     <sound>sound\sndSelect</sound>
     <sound>sound\sndShadow</sound>
+    <sound>sound\sndMove</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sBattery</sprite>
@@ -82,7 +83,7 @@
   <objects name="objects">
     <object>objects\oGrid</object>
     <object>objects\oController</object>
-    <object>objects\oSkip</object>
+    <object>objects\oReseed</object>
     <object>objects\oAudio</object>
     <object>objects\oHuman</object>
     <object>objects\oBattery</object>

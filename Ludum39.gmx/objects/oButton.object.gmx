@@ -53,7 +53,12 @@ txtCol = c_white;
             <string>if (position_meeting(mouse_x,mouse_y,id)) { 
     txtCol = make_color_rgb(249, 250, 165);
     if (mouse_check_button_released(mb_left)) { // Click confirmed
-        room_goto(rGame); 
+        audio_play_sound(sndSelect,0,false);
+        if (room == rStart) room_goto(rGame); 
+        else if (room == rGame) { 
+            oController.movesLeft = 0; 
+            oController.powersLeft = 0; 
+        }
         //txtCol = $f9faa5; 
     } else if (mouse_check_button(mb_left)) {     // Held
         image_index = 2; 
@@ -90,11 +95,18 @@ txtCol = c_white;
             <kind>1</kind>
             <string>draw_self();
 
-draw_set_font(fntCubicL);
+
 draw_set_halign(fa_center); 
 draw_set_valign(fa_middle);
 draw_set_colour(txtCol);
-draw_text(x,y,"PLAY");
+
+if (room == rStart) { 
+    draw_set_font(fntCubicXL);
+    draw_text(x,y,"PLAY");
+} else { 
+    draw_set_font(fntCubicL);
+    draw_text(x,y,"END TURN");
+}
 
 
 </string>

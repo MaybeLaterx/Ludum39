@@ -165,6 +165,7 @@ if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &
                 audio_play_sound(sndRecharge,0,false); 
             }
         }
+        audio_play_sound(sndMove,0,false);
         oController.movesLeft--;
         instance_create(x,y,oFloor); 
         with (flr) instance_destroy(); 

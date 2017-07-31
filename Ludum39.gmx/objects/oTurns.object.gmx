@@ -32,7 +32,7 @@ rh = room_height;
 rw = room_width; 
 
 x = rw/2; 
-y = rh - 20 - sprite_height; 
+y = rh - 80; 
 
 
 </string>
@@ -73,7 +73,7 @@ draw_text(x + offset,y, string(oController.maxTurns));
 draw_set_font(fntCubic); 
 draw_set_halign(fa_center);
 draw_set_colour($4d4d4d);
-draw_text(x, y + 38, "TURNS");
+draw_text(x, y + 40, "TURNS");
 
 </string>
           </argument>
