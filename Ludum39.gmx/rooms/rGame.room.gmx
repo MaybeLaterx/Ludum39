@@ -60,7 +60,7 @@ randomize();</code>
     <instance objName="oPortraitHuman" x="64" y="704" name="inst_937B4C9F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPortraitShadow" x="928" y="704" name="inst_226458ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oTurns" x="480" y="704" name="inst_92B09A63" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oButton" x="736" y="64" name="inst_9F1D80D1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oButton" x="864" y="64" name="inst_9F1D80D1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
