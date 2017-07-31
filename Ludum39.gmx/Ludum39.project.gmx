@@ -110,6 +110,7 @@
     <room>rooms\rGame</room>
     <room>rooms\rShadows</room>
     <room>rooms\rHumans</room>
+    <room>rooms\rLevels</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

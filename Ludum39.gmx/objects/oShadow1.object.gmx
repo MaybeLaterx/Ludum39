@@ -66,6 +66,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
     } else { 
         // Upgrade
         if (oController.powersLeft &gt; 0) { 
+            audio_play_sound(sndShadow,0,false);
             trace("Shadow upgraded");
             instance_create(x,y,oShadow2); 
             instance_destroy(); 

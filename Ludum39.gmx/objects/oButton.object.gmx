@@ -102,7 +102,7 @@ draw_set_colour(txtCol);
 
 if (room == rStart) { 
     draw_set_font(fntCubicXL);
-    draw_text(x,y,"PLAY");
+    draw_text(x,y,"SNGL PLAY");
 } else { 
     draw_set_font(fntCubicL);
     draw_text(x,y,"END TURN");

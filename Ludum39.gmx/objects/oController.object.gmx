@@ -111,6 +111,83 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (global.mode = 0) { // AI
+    kill = false; 
+    with (oShadow1) {  
+        rnd = random(1); // fail chance
+        if (rnd &lt; 0.95 &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; canAttack) {
+            size = 32;
+            insts[0] = instance_position(x + size,y,all); 
+            insts[1] = instance_position(x,y - size,all); 
+            insts[2] = instance_position(x - size,y,all); 
+            insts[3] = instance_position(x,y + size,all);
+            
+            for (h = 0; h &lt; 4; h++) { // directions
+                tile = insts[h];
+                if (tile != noone) { 
+                    type = tile.object_index; 
+                    if (type != oWall &amp;&amp; type != oShadow3) { 
+                        for (i = 0; i &lt; 3; i++) { // height
+                            for (j = 0; j &lt; 3; j++) { // width
+                                xx = x - 32 + (32*j);
+                                yy = y - 32 + (32*i);
+                                deadHuman = instance_position(xx,yy,oHuman); 
+                                if (deadHuman != noone) { 
+                                    attack = true; 
+                                    with (deadHuman) { 
+                                        instance_create(x,y,oFloor); 
+                                        death = instance_create(x,y,oDeath);
+                                        death.sprite_index = sHumanDeath;
+                                        instance_destroy();
+                                    }
+                                    other.kill = true;
+                                }
+                            }
+                        }    
+                    }
+                }
+            }
+        }
+        
+        if (kill) {
+            audio_play_sound(sndHumanDeath,0,false); 
+            if (!instance_exists(oHuman)) room_goto(rShadows);
+        }
+    
+        tile = instance_position(mouse_x,mouse_y,all);
+        if (tile != noone) { 
+            type = tile.object_index; 
+            if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+                if (tile.x &gt; x &amp;&amp; tile.y &lt;= y) rot = 0; 
+                else if (tile.y &lt; y &amp;&amp; tile.x &lt;= x) rot = 90; 
+                else if (tile.x &lt; x &amp;&amp; tile.y &gt;= y) rot = 180; 
+                else rot = 270;
+                draw_sprite_ext(sArrowN,0,tile.x,tile.y,1,1,rot,-1,1); 
+            }
+        }
+        if (oController.powersLeft &lt; 1) break; 
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="0">
       <action>
