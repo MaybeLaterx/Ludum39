@@ -208,13 +208,13 @@ for(i = 0; i &lt; max_charges; ++i){
     
     x_spacing = 0;
     
-    switch(i){
-        case 0: x_spacing = 8; break;
-        case 1: x_spacing = sprite_width / 2; break;
-        case 2: x_spacing = sprite_width - 8; break;
+    switch(i) {
+        case 0: x_spacing = -sprite_width / 2 + 4; break;
+        case 1: x_spacing = 0; break;
+        case 2: x_spacing = sprite_width / 2 - 4; break;
     }
         
-    draw_sprite(to_draw, 0, x + x_spacing, y - 12);
+    draw_sprite(to_draw, 0, x + x_spacing, y - 12 - (sprite_height / 2));
 } 
 </string>
           </argument>

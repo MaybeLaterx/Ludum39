@@ -129,6 +129,8 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             <kind>1</kind>
             <string>if (global.mode = 0) { // AI
     kill = false; 
+    
+    // ATTEMPT TO KILL
     with (oShadow1) {  
         rnd = random(1); // fail chance
         if (rnd &lt; 0.95 &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; canAttack) {
@@ -140,49 +142,99 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             
             for (h = 0; h &lt; 4; h++) { // directions
                 tile = insts[h];
+                attack = false; 
                 if (tile != noone) { 
                     type = tile.object_index; 
                     if (type != oWall &amp;&amp; type != oShadow3) { 
                         for (i = 0; i &lt; 3; i++) { // height
                             for (j = 0; j &lt; 3; j++) { // width
-                                xx = x - 32 + (32*j);
-                                yy = y - 32 + (32*i);
+                                xx = tile.x - 32 + (32*j);
+                                yy = tile.y - 32 + (32*i);
                                 deadHuman = instance_position(xx,yy,oHuman); 
                                 if (deadHuman != noone) { 
                                     attack = true; 
+                                    //i = 99; 
+                                    //j = 99;
+                                    h = 99; // Exit loop
                                     with (deadHuman) { 
                                         instance_create(x,y,oFloor); 
                                         death = instance_create(x,y,oDeath);
                                         death.sprite_index = sHumanDeath;
                                         instance_destroy();
                                     }
-                                    other.kill = true;
                                 }
                             }
                         }    
                     }
                 }
+                
+                if (attack) { 
+                    oController.powersLeft--; 
+                    other.kill = true;
+                    instance_create(x,y,oFloor); 
+                    death = instance_create(x,y,oDeath);
+                    death.sprite_index = sShadow1Death;
+                    instance_destroy();
+                }
             }
         }
-        
-        if (kill) {
-            audio_play_sound(sndHumanDeath,0,false); 
-            if (!instance_exists(oHuman)) room_goto(rShadows);
-        }
-    
-        tile = instance_position(mouse_x,mouse_y,all);
-        if (tile != noone) { 
-            type = tile.object_index; 
-            if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
-                if (tile.x &gt; x &amp;&amp; tile.y &lt;= y) rot = 0; 
-                else if (tile.y &lt; y &amp;&amp; tile.x &lt;= x) rot = 90; 
-                else if (tile.x &lt; x &amp;&amp; tile.y &gt;= y) rot = 180; 
-                else rot = 270;
-                draw_sprite_ext(sArrowN,0,tile.x,tile.y,1,1,rot,-1,1); 
-            }
-        }
-        if (oController.powersLeft &lt; 1) break; 
     }
+    
+    if (kill) {
+        audio_play_sound(sndHumanDeath,0,false); 
+        if (!instance_exists(oHuman)) room_goto(rShadows);
+    }
+    
+    // ATTEMPT TO SPAWN
+    corners = ds_list_create(); 
+    singles = ds_list_create();
+    with (oHuman) { 
+        for (i = 0; i &lt; 7; i++) { 
+            for (j = 0; j &lt; 7; j++) { 
+                xx = x - 32*4 + (32*j);
+                yy = y - 32*4 + (32*i);
+                flr = instance_position(xx,yy,oFloor); 
+                if (flr != noone) {
+                    if (canGrow(flr.x,flr.y)) ds_list_add(other.corners,flr);
+                    else if (isSuitable(flr.x,flr.y)) ds_list_add(other.singles,flr);
+                }
+            }
+        }
+    }
+    
+    trace("Corners");
+    for (i = 0; i &lt; ds_list_size(corners); i++) { 
+        trace(ds_list_find_value(corners,i));
+    }
+    
+    trace("Singles");
+    for (i = 0; i &lt; ds_list_size(singles); i++) { 
+        trace(ds_list_find_value(singles,i));
+    }
+    
+    // might hang
+    if (oController.powersLeft &gt; 0) audio_play_sound(sndShadow,0,false);
+    attempts = 0; 
+    while (oController.powersLeft &gt; 0 &amp;&amp; attempts &lt; 50) {
+        attempts++; 
+        rnd = random(1); 
+        if (rnd &lt; 0.8) list = corners;
+        else list = singles;
+        
+        if (!ds_list_empty(list)) {  
+            rnd2 = irandom(ds_list_size(list) - 1);
+            trace(rnd2);
+            tile = ds_list_find_value(list,rnd2);
+            if (instance_exists(tile)) { 
+                instance_create(tile.x,tile.y,oShadow1);
+                with (tile) instance_destroy();
+                oController.powersLeft--;
+            }
+        }
+    }            
+        
+    ds_list_destroy(corners);
+    ds_list_destroy(singles);
 }
 </string>
           </argument>

@@ -10,7 +10,7 @@
   <persistent>0</persistent>
   <colour>0</colour>
   <showcolour>-1</showcolour>
-  <code>global.mode = 1; 
+  <code>global.mode = 0; 
 
 audio_play_sound(sndMenu,0,true);</code>
   <enableViews>0</enableViews>
