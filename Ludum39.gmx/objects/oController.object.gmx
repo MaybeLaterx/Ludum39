@@ -129,7 +129,8 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white);
+            <string>/*
+draw_set_color(c_white);
 draw_set_font(fntCubic);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_left);

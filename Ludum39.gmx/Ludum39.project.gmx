@@ -19,6 +19,7 @@
     <sound>sound\sndError</sound>
     <sound>sound\sndFlashlight</sound>
     <sound>sound\sndSelect</sound>
+    <sound>sound\sndShadow</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sBattery</sprite>
@@ -52,6 +53,12 @@
     <sprite>sprites\sShadow2Death</sprite>
     <sprite>sprites\sButton</sprite>
     <sprite>sprites\sTitle</sprite>
+    <sprite>sprites\sPortraitHuman</sprite>
+    <sprite>sprites\sPortraitShadow</sprite>
+    <sprite>sprites\sIconLight</sprite>
+    <sprite>sprites\sIconMove</sprite>
+    <sprite>sprites\sIconPlace</sprite>
+    <sprite>sprites\sTurns</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -70,6 +77,7 @@
   <fonts name="fonts">
     <font>fonts\fntCubic</font>
     <font>fonts\fntCubicL</font>
+    <font>fonts\fntCubicXL</font>
   </fonts>
   <objects name="objects">
     <object>objects\oGrid</object>
@@ -92,6 +100,9 @@
     <object>objects\oButton</object>
     <object>objects\oTitle</object>
     <object>objects\oCredits</object>
+    <object>objects\oTurns</object>
+    <object>objects\oPortraitHuman</object>
+    <object>objects\oPortraitShadow</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rStart</room>

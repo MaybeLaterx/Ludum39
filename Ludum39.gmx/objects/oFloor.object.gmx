@@ -58,6 +58,7 @@ with (oShadow1) if (selected) other.shadowSelected = true;
 // Fill with shadow
 if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable &amp;&amp; !shadowSelected) { 
     instance_create(x,y,oShadow1);
+    audio_play_sound(sndShadow,0,false);
     oController.powersLeft--; 
     instance_destroy(); 
 }

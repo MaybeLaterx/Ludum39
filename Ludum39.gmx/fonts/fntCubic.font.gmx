@@ -6,7 +6,7 @@
   <renderhq>-1</renderhq>
   <italic>0</italic>
   <charset>1</charset>
-  <aa>3</aa>
+  <aa>0</aa>
   <includeTTF>0</includeTTF>
   <TTFName></TTFName>
   <texgroups>
@@ -18,12 +18,12 @@
   <glyphs>
     <glyph character="32" x="130" y="59" w="6" h="20" shift="6" offset="0"/>
     <glyph character="33" x="22" y="81" w="2" h="17" shift="4" offset="0"/>
-    <glyph character="34" x="10" y="81" w="6" h="7" shift="8" offset="0"/>
+    <glyph character="34" x="14" y="81" w="6" h="6" shift="8" offset="0"/>
     <glyph character="35" x="122" y="40" w="10" h="17" shift="12" offset="0"/>
     <glyph character="36" x="42" y="81" w="0" h="0" shift="0" offset="0"/>
     <glyph character="37" x="38" y="81" w="0" h="0" shift="0" offset="0"/>
     <glyph character="38" x="62" y="59" w="10" h="17" shift="12" offset="0"/>
-    <glyph character="39" x="34" y="81" w="2" h="7" shift="4" offset="0"/>
+    <glyph character="39" x="34" y="81" w="2" h="6" shift="4" offset="0"/>
     <glyph character="40" x="224" y="59" w="4" h="19" shift="6" offset="0"/>
     <glyph character="41" x="218" y="59" w="4" h="19" shift="6" offset="0"/>
     <glyph character="42" x="194" y="59" w="6" h="15" shift="8" offset="0"/>
@@ -108,7 +108,7 @@
     <glyph character="121" x="114" y="21" w="12" h="17" shift="14" offset="0"/>
     <glyph character="122" x="44" y="40" w="12" h="17" shift="14" offset="0"/>
     <glyph character="123" x="138" y="59" w="6" h="19" shift="8" offset="0"/>
-    <glyph character="124" x="18" y="81" w="2" h="19" shift="4" offset="0"/>
+    <glyph character="124" x="10" y="81" w="2" h="19" shift="4" offset="0"/>
     <glyph character="125" x="146" y="59" w="6" h="19" shift="8" offset="0"/>
     <glyph character="126" x="48" y="81" w="0" h="0" shift="0" offset="0"/>
     <glyph character="127" x="74" y="2" w="13" h="17" shift="27" offset="0"/>

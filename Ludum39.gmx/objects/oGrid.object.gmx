@@ -117,8 +117,8 @@ Selected level:
 width = getLayoutWidth(layout);
 height = getLayoutHeight(layout); 
 
-room_height = height*size; 
-room_width = width*size;
+//room_height = height*size; 
+//room_width = width*size;
 
 x = room_width/2; 
 y = room_height/2; 
