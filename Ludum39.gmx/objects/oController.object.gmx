@@ -95,7 +95,10 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             depth = -5; 
             canAttack = true;
         }
-        with (oHuman) depth = -4; 
+        with (oHuman) {
+            depth = -4; 
+            sprite_index = sHumanIdleR;
+        }
         
         if (turnsElapsed &gt; 19) room_goto(rHumans);
     } else { 

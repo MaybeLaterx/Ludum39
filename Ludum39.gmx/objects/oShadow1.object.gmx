@@ -113,6 +113,8 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
                     if (humanTarget != noone) { 
                         with (humanTarget) { 
                             instance_create(x,y,oFloor); 
+                            death = instance_create(x,y,oDeath);
+                            death.sprite_index = sHumanDeath;
                             instance_destroy();
                         }
                         kill = true;

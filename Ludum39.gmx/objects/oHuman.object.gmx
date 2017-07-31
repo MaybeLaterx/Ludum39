@@ -129,7 +129,10 @@ if (selected) {
                 if (shadow == noone) shadow = instance_position(lx,ly,oShadow2);
                 if (shadow != noone) { 
                     instance_create(lx,ly,oFloor);
-                    if (shadow.object_index == oShadow1) instance_create(lx,ly,oShadow1Death);
+                    if (shadow.object_index == oShadow1) {
+                        death = instance_create(lx,ly,oDeath);
+                        death.sprite_index = sShadow1Death;
+                    }
                     //#else instance_create(lx,ly,oShadow2Death);
                     with (shadow) instance_destroy();
                 }

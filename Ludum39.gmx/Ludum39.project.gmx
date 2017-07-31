@@ -33,6 +33,7 @@
     <sprite>sprites\sHumanIdleU</sprite>
     <sprite>sprites\sHumanIdleL</sprite>
     <sprite>sprites\sHumanIdleD</sprite>
+    <sprite>sprites\sHumanDeath</sprite>
     <sprite>sprites\sShadow</sprite>
     <sprite>sprites\sShadow1</sprite>
     <sprite>sprites\sShadow2</sprite>
@@ -79,7 +80,7 @@
     <object>objects\oMenuButton</object>
     <object>objects\oHumansScreen</object>
     <object>objects\oShadowsScreen</object>
-    <object>objects\oShadow1Death</object>
+    <object>objects\oDeath</object>
     <object>objects\oCamera</object>
   </objects>
   <rooms name="rooms">
