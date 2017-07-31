@@ -51,6 +51,7 @@
     <sprite>sprites\sEnergy0</sprite>
     <sprite>sprites\sShadow2Death</sprite>
     <sprite>sprites\sButton</sprite>
+    <sprite>sprites\sTitle</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -68,6 +69,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntCubic</font>
+    <font>fonts\fntCubicL</font>
   </fonts>
   <objects name="objects">
     <object>objects\oGrid</object>
@@ -88,6 +90,8 @@
     <object>objects\oDeath</object>
     <object>objects\oCamera</object>
     <object>objects\oButton</object>
+    <object>objects\oTitle</object>
+    <object>objects\oCredits</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rStart</room>
