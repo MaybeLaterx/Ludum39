@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>humanTurn = false;
+maxTurns = 40;
 
 maxMoves = 2; 
 movesLeft = maxMoves; 
@@ -61,6 +62,7 @@ turnsElapsed = 1;
             <string>/// End turn
 if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) { 
     humanTurn = !humanTurn;
+    turnsElapsed++; 
     movesLeft = maxMoves; 
     if (humanTurn) powersLeft = maxHumanPowers; 
     else powersLeft = maxShadowPowers;
@@ -68,7 +70,6 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
     if (!humanTurn) {
         with (oHuman) selected = false;
     
-        turnsElapsed++; 
         with (oShadow2) {
             instance_create(x,y,oShadow3);
             instance_destroy();
@@ -100,7 +101,7 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             sprite_index = sHumanIdleR;
         }
         
-        if (turnsElapsed &gt; 19) room_goto(rHumans);
+        if (turnsElapsed &gt;= maxTurns) room_goto(rHumans);
     } else { 
         with (oShadow1) depth = -4; 
         with (oHuman) depth = -5; 

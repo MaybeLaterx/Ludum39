@@ -6,11 +6,12 @@
   <NewExtensions/>
   <sounds name="sound">
     <sounds name="Music">
-      <sound>sound\sndShadowWin</sound>
-      <sound>sound\sndHumanWin</sound>
+      <sound>sound\sndMenu</sound>
       <sound>sound\sndMusic1</sound>
       <sound>sound\sndMusic2</sound>
       <sound>sound\sndMusic3</sound>
+      <sound>sound\sndHumanWin</sound>
+      <sound>sound\sndShadowWin</sound>
     </sounds>
     <sound>sound\sndRecharge</sound>
     <sound>sound\sndShadowDeath</sound>
@@ -49,6 +50,7 @@
     <sprite>sprites\sEnergy1</sprite>
     <sprite>sprites\sEnergy0</sprite>
     <sprite>sprites\sShadow2Death</sprite>
+    <sprite>sprites\sButton</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -85,12 +87,13 @@
     <object>objects\oShadowsScreen</object>
     <object>objects\oDeath</object>
     <object>objects\oCamera</object>
+    <object>objects\oButton</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rStart</room>
     <room>rooms\rGame</room>
     <room>rooms\rShadows</room>
     <room>rooms\rHumans</room>
-    <room>rooms\rStart</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
