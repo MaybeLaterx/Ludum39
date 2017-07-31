@@ -46,6 +46,9 @@
     <sprite>sprites\sHumansWin</sprite>
     <sprite>sprites\sShadow1Death</sprite>
     <sprite>sprites\sSkull</sprite>
+    <sprite>sprites\sEnergy1</sprite>
+    <sprite>sprites\sEnergy0</sprite>
+    <sprite>sprites\sprite28_shadows_destroyed_stage2_spritesheet</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
