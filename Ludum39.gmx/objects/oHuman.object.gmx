@@ -241,7 +241,7 @@ for(i = 0; i &lt; max_charges; ++i){
             <string>draw_sprite(sFloor,0,x,y);
 if (selected) {
     draw_sprite(sOutline,0,x,y);
-    draw_text(700,100,"Charge remaining: " + string(charge));
+    //draw_text(700,100,"Charge remaining: " + string(charge));
 }
 draw_self(); 
 

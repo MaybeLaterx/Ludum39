@@ -54,8 +54,11 @@ txtCol = c_white;
     txtCol = make_color_rgb(249, 250, 165);
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         audio_play_sound(sndSelect,0,false);
-        if (room == rStart) room_goto(rGame); 
-        else if (room == rGame) { 
+        if (room == rStart) {
+            if (txt == "SOLO") global.mode = 0; 
+            else global.mode = 1; 
+            room_goto(rGame); 
+        } else if (room == rGame) { 
             oController.movesLeft = 0; 
             oController.powersLeft = 0; 
         }
@@ -102,11 +105,12 @@ draw_set_colour(txtCol);
 
 if (room == rStart) { 
     draw_set_font(fntCubicXL);
-    draw_text(x,y,"SNGL PLAY");
 } else { 
     draw_set_font(fntCubicL);
-    draw_text(x,y,"END TURN");
+    txt = "END TURN";
 }
+
+draw_text(x,y,txt);
 
 
 </string>

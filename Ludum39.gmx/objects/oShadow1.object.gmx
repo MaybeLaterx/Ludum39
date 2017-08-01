@@ -129,6 +129,8 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
             }
             
             instance_create(x,y,oFloor); 
+            death = instance_create(x,y,oDeath);
+            death.sprite_index = sShadow1Death;
             instance_destroy(); 
         }
     }
@@ -167,6 +169,16 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; canAttack) {
     if (tile != noone) { 
         type = tile.object_index; 
         if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+            size = 32;
+            for (i = 0; i &lt; 3; i++) { 
+                for (j = 0; j &lt; 3; j++) {
+                    xx = tile.x - size + size*j; 
+                    yy = tile.y - size + size*i;
+                    draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
+                }
+            }
+        
+        
             if (tile.x &gt; x &amp;&amp; tile.y &lt;= y) rot = 0; 
             else if (tile.y &lt; y &amp;&amp; tile.x &lt;= x) rot = 90; 
             else if (tile.x &lt; x &amp;&amp; tile.y &gt;= y) rot = 180; 

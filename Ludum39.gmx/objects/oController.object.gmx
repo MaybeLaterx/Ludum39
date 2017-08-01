@@ -127,7 +127,8 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.mode = 0 &amp;&amp; !humanTurn) { // AI
+            <string>if (global.mode == 0 &amp;&amp; !humanTurn) { // AI
+    trace("AI commencing");
     kill = false; 
     
     // ATTEMPT TO KILL
