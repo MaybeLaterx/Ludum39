@@ -38,7 +38,7 @@ powersLeft = 5;
 turnsElapsed = 1;
 
 // AI initialisations
-maxTimer = 45; 
+maxTimer = 35; 
 timer = maxTimer;
 canKill = true; 
 canSpawn = true;
@@ -139,25 +139,20 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
           <argument>
             <kind>1</kind>
             <string>/// Shadows AI
-if (global.mode == 0 &amp;&amp; !humanTurn &amp;&amp; instance_exists(oHuman)) {
+if ((global.ai == "shadows" || global.ai == "both") &amp;&amp; !humanTurn &amp;&amp; instance_exists(oHuman)) {
     timer--; 
     
     if (timer &lt; 1) { 
         trace("AI commencing");
         
-        if (canKill) {
-            canKill = attemptKill(); 
-            if (canKill) timer = maxTimer;
-        } else if (canSpawn) {
-            canSpawn = attemptSpawn(); 
-            if (canSpawn) timer = maxTimer;    
-        } else if (canUpgrade) { 
-            canUpgrade = attemptUpgrade(); 
-            if (canUpgrade) timer = maxTimer; 
-        } else oController.powersLeft = 0; 
-
+        if (canKill) canKill = attemptKill(); 
+        else if (canSpawn) canSpawn = attemptSpawn(); 
+        else if (canUpgrade) canUpgrade = attemptUpgrade(); 
+        else oController.powersLeft = 0; 
+        
+        timer = maxTimer; 
     }
-}    
+}
 </string>
           </argument>
         </arguments>

@@ -28,6 +28,8 @@
             <string>image_xscale = 2; 
 image_yscale = 2; 
 txtCol = c_white;
+
+botTurn = false; 
 </string>
           </argument>
         </arguments>
@@ -53,14 +55,18 @@ txtCol = c_white;
             <string>if (position_meeting(mouse_x,mouse_y,id)) { 
     txtCol = make_color_rgb(249, 250, 165);
     if (mouse_check_button_released(mb_left)) { // Click confirmed
-        audio_play_sound(sndSelect,0,false);
         if (room == rStart) {
-            if (txt == "SOLO") global.mode = 0; 
-            else global.mode = 1; 
+            audio_play_sound(sndSelect,0,false);
+            if (txt == "SOLO") global.ai = "shadows";   // shadows, humans, both, none
+            else global.ai = "none"; 
             room_goto(rGame); 
         } else if (room == rGame) { 
-            oController.movesLeft = 0; 
-            oController.powersLeft = 0; 
+            botTurn = ((oController.humanTurn == true &amp;&amp; (global.ai == "humans" || global.ai == "both"))    ||  (oController.humanTurn == false &amp;&amp; (global.ai == "shadows" || global.ai == "both"))); 
+            if (!botTurn) { 
+                audio_play_sound(sndSelect,0,false);
+                oController.movesLeft = 0; 
+                oController.powersLeft = 0; 
+            }
         }
         //txtCol = $f9faa5; 
     } else if (mouse_check_button(mb_left)) {     // Held
@@ -96,22 +102,23 @@ txtCol = c_white;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
-
-
-draw_set_halign(fa_center); 
-draw_set_valign(fa_middle);
-draw_set_colour(txtCol);
-
-if (room == rStart) { 
-    draw_set_font(fntCubicXL);
-} else { 
-    draw_set_font(fntCubicL);
-    txt = "END TURN";
-}
-
-draw_text(x,y,txt);
-
+            <string>if (!botTurn) { 
+    draw_self();
+    
+    
+    draw_set_halign(fa_center); 
+    draw_set_valign(fa_middle);
+    draw_set_colour(txtCol);
+    
+    if (room == rStart) { 
+        draw_set_font(fntCubicXL);
+    } else { 
+        draw_set_font(fntCubicL);
+        txt = "END TURN";
+    }
+    
+    draw_text(x,y,txt);
+}   
 
 </string>
           </argument>

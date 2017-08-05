@@ -103,6 +103,7 @@
     <object>objects\oDeath</object>
     <object>objects\oCamera</object>
     <object>objects\oButton</object>
+    <object>objects\oEndTurn</object>
     <object>objects\oTitle</object>
     <object>objects\oCredits</object>
     <object>objects\oTurns</object>
