@@ -127,7 +127,8 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.mode == 0 &amp;&amp; !humanTurn) { // AI
+            <string>/// Shadows AI
+if (global.mode == 0 &amp;&amp; !humanTurn) { // AI
     trace("AI commencing");
     kill = false; 
     
@@ -149,19 +150,21 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
                     if (type != oWall &amp;&amp; type != oShadow3) { 
                         for (i = 0; i &lt; 3; i++) { // height
                             for (j = 0; j &lt; 3; j++) { // width
-                                xx = tile.x - 32 + (32*j);
-                                yy = tile.y - 32 + (32*i);
-                                deadHuman = instance_position(xx,yy,oHuman); 
-                                if (deadHuman != noone) { 
-                                    attack = true; 
-                                    //i = 99; 
-                                    //j = 99;
-                                    h = 99; // Exit loop
-                                    with (deadHuman) { 
-                                        instance_create(x,y,oFloor); 
-                                        death = instance_create(x,y,oDeath);
-                                        death.sprite_index = sHumanDeath;
-                                        instance_destroy();
+                                if (instance_exists(tile)) { 
+                                    xx = tile.x - 32 + (32*j);
+                                    yy = tile.y - 32 + (32*i);
+                                    deadHuman = instance_position(xx,yy,oHuman); 
+                                    if (deadHuman != noone) { 
+                                        attack = true; 
+                                        //i = 99; 
+                                        //j = 99;
+                                        h = 99; // Exit loop
+                                        with (deadHuman) { 
+                                            instance_create(x,y,oFloor); 
+                                            death = instance_create(x,y,oDeath);
+                                            death.sprite_index = sHumanDeath;
+                                            instance_destroy();
+                                        }
                                     }
                                 }
                             }
@@ -212,7 +215,6 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             trace(ds_list_find_value(singles,i));
         }
         
-        // might hang
         if (oController.powersLeft &gt; 0) audio_play_sound(sndShadow,0,false);
         attempts = 0; 
         while (oController.powersLeft &gt; 0 &amp;&amp; attempts &lt; 50) {
@@ -231,6 +233,19 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
                     oController.powersLeft--;
                 }
             }
+        }
+        
+        attempts = 0; 
+        while (oController.powersLeft &gt; 0 &amp;&amp; attempts &lt; 50) { 
+            if (instance_exists(oShadow1)) { 
+                shadow1 = getRandomInst(oShadow1); 
+                with (shadow1) { 
+                    instance_create(x,y,oShadow2); 
+                    instance_destroy(); 
+                }
+                oController.powersLeft--; 
+            }
+        
         }
         
         oController.powersLeft = 0;             

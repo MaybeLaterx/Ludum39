@@ -74,6 +74,7 @@
     <script>scripts\spread.gml</script>
     <script>scripts\isAdjacent.gml</script>
     <script>scripts\isBatteryAdjacent.gml</script>
+    <script>scripts\getRandomInst.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntCubic</font>
