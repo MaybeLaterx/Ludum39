@@ -75,6 +75,9 @@
     <script>scripts\isAdjacent.gml</script>
     <script>scripts\isBatteryAdjacent.gml</script>
     <script>scripts\getRandomInst.gml</script>
+    <script>scripts\attemptKill.gml</script>
+    <script>scripts\attemptSpawn.gml</script>
+    <script>scripts\attemptUpgrade.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntCubic</font>

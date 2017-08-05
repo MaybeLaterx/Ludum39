@@ -8,7 +8,7 @@
   <isometric>0</isometric>
   <speed>30</speed>
   <persistent>0</persistent>
-  <colour>2105376</colour>
+  <colour>657930</colour>
   <showcolour>-1</showcolour>
   <code>audio_stop_sound(sndMenu);
 
