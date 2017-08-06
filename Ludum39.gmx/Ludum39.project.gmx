@@ -78,6 +78,15 @@
     <script>scripts\attemptKill.gml</script>
     <script>scripts\attemptSpawn.gml</script>
     <script>scripts\attemptUpgrade.gml</script>
+    <script>scripts\attemptShoot.gml</script>
+    <script>scripts\updateDangers.gml</script>
+    <script>scripts\resetVals.gml</script>
+    <script>scripts\updateScopes.gml</script>
+    <script>scripts\addToArray.gml</script>
+    <script>scripts\updateBatteryProximity.gml</script>
+    <script>scripts\attemptMove.gml</script>
+    <script>scripts\shootBeam.gml</script>
+    <script>scripts\moveHuman.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntCubic</font>

@@ -41,6 +41,10 @@ lights[1] = sLight1;
 lights[2] = sLight2; 
 lights[3] = sLight3; 
 lights[4] = sLight4; 
+
+threats = 0; 
+scopes = 0; 
+battery = 0; 
 </string>
           </argument>
         </arguments>
@@ -110,41 +114,13 @@ if (mouse_check_button_pressed(mb_right)) {
           <argument>
             <kind>1</kind>
             <string>// Shine light
-if (selected) { 
-    if (mouse_check_button_pressed(mb_left) &amp;&amp; quadrant != 0 &amp;&amp; !inside &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent &amp;&amp; charge &gt; 0) { 
-        if (!isBatteryAdjacent(x,y)) charge--;
-        selected = false;
-        shining = true;
-        oController.powersLeft--;
-        timer = 35;
-        kill = false;
-        for (i = 0; i &lt; 5; i++) {
-            lx = x + xd*size*(i+1);
-            ly = y + yd*size*(i+1);
-            if (place_meeting(lx,ly,oWall) || place_meeting(lx,ly,oHuman) || place_meeting(lx,ly,oShadow3)) break;
-            
-            if (place_meeting(lx,ly,oShadow1) || place_meeting(lx,ly,oShadow2)) { 
-                kill = true;
-                shadow = instance_position(lx,ly,oShadow1);
-                if (shadow == noone) shadow = instance_position(lx,ly,oShadow2);
-                if (shadow != noone) { 
-                    instance_create(lx,ly,oFloor);
-                    if (shadow.object_index == oShadow1) {
-                        death = instance_create(lx,ly,oDeath);
-                        death.sprite_index = sShadow1Death;
-                    }
-                    //#else instance_create(lx,ly,oShadow2Death);
-                    with (shadow) instance_destroy();
-                }
-            }
-        }
-        
-        if (kill) audio_play_sound(sndShadowDeath,0,false); 
-        
-        if (!instance_exists(oShadow1) &amp;&amp; !instance_exists(oShadow2)) room_goto(rHumans);
-        else audio_play_sound(sndFlashlight,0,false); 
-    }
-}
+if (selected &amp;&amp; mouse_check_button_pressed(mb_left) 
+&amp;&amp; quadrant != 0 
+&amp;&amp; !inside 
+&amp;&amp; oController.powersLeft &gt; 0 
+&amp;&amp; !adjacent 
+&amp;&amp; charge &gt; 0) 
+    shootBeam(id,dir); 
 
 if (shining) {
     if (timer &lt;= 0) shining = false; 
@@ -154,23 +130,7 @@ if (shining) {
 // Move
 if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &amp;&amp; adjacent &amp;&amp; oController.movesLeft &gt; 0) {
     flr = instance_position(mouse_x,mouse_y,oFloor);
-    if (flr != noone) { 
-        newHuman = instance_create(flr.x,flr.y,oHuman);
-        with (newHuman) { 
-            selected = true;
-            if (!isBatteryAdjacent(x,y)) { 
-                charge = other.charge;   
-            } else if (other.charge &lt; maxCharge) {
-                charge = maxCharge;
-                audio_play_sound(sndRecharge,0,false); 
-            }
-        }
-        audio_play_sound(sndMove,0,false);
-        oController.movesLeft--;
-        instance_create(x,y,oFloor); 
-        with (flr) instance_destroy(); 
-        instance_destroy();
-    }
+    if (flr != noone) moveHuman(id,flr); 
 }
 
 
