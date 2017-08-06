@@ -98,15 +98,16 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             }
         }
         
+        with (oShadow1) {
+            depth = -5; 
+            canAttack = true;
+        }
+        
         with (oShadow0) { 
             instance_create(x,y,oShadow1); 
             instance_destroy();
         }
         
-        with (oShadow1) {
-            depth = -5; 
-            canAttack = true;
-        }
         with (oHuman) {
             depth = -4; 
             sprite_index = sHumanIdleR;

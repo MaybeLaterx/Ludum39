@@ -4,18 +4,20 @@ urgent = argument0;
 
 if (oController.powersLeft < 1) return false; 
 
+
 humanID = noone;
 bestHits = 0; 
 bestDir = 0; 
 with (oHuman) { 
-    if ((is_array(threats) && other.urgent) || (!is_array(threats) && !other.urgent)) {
+    if (charge > 0 && ((is_array(threats) && other.urgent) || (!is_array(threats) && !other.urgent))) {
 
         for (i = 0; i < 4; i++) { 
             thisHits = 0;  
             for (j = 1; j < 6; j++) { 
                 xx = x + lengthdir_x(j*32,i*90);
                 yy = y + lengthdir_y(j*32,i*90);
-                if (position_meeting(xx,yy,oShadow1) || position_meeting(xx,yy,oShadow2)) thisHits++; 
+                if (position_meeting(xx,yy,oShadow3) || position_meeting(xx,yy,oWall) || position_meeting(xx,yy,oHuman)) break; 
+                else if (position_meeting(xx,yy,oShadow1) || position_meeting(xx,yy,oShadow2)) thisHits++; 
             }   
             
             if (thisHits >= other.bestHits) { 

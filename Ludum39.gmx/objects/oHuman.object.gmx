@@ -44,7 +44,7 @@ lights[4] = sLight4;
 
 threats = 0; 
 scopes = 0; 
-battery = 0; 
+battery = 99; 
 </string>
           </argument>
         </arguments>

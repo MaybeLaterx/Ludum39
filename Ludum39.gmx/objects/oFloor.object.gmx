@@ -31,7 +31,7 @@ shadowSelected = false;
 
 threats = 0; 
 scopes = 0; 
-battery = 0; 
+battery = 99; 
 </string>
           </argument>
         </arguments>
@@ -102,7 +102,7 @@ if (inside &amp;&amp; !oController.humanTurn &amp;&amp; !shadowSelected &amp;&am
 
 //draw_text(x,y,string(array_length_1d(threats)));
 //draw_text(x,y,string(array_length_1d(scopes)));
-draw_text(x,y,string(battery));
+//draw_text(x,y,string(battery));
 </string>
           </argument>
         </arguments>

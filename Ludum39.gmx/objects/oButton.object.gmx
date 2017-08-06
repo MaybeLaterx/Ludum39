@@ -57,7 +57,7 @@ botTurn = false;
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         if (room == rStart) {
             audio_play_sound(sndSelect,0,false);
-            if (txt == "SOLO") global.ai = "humans";   // shadows, humans, both, none
+            if (txt == "SOLO") global.ai = "both";   // shadows, humans, both, none
             else global.ai = "none"; 
             room_goto(rGame); 
         } else if (room == rGame) { 
