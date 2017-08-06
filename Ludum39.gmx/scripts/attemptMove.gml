@@ -11,6 +11,7 @@ highestKills = 0;
 lowestDist = 99; // battery 
 with (oHuman) {
     if ((is_array(threats) && array_length_1d(threats) >= other.minDangers) || !is_array(threats) && other.minDangers == 0) {
+        trace("Fitting move specifications (dangers: " + string(other.minDangers) + ")");
         for (i = 0; i < 3; i++) { 
             for (j = 0; j < 3; j++) { 
                 xx = x - 32 + (32*j); 
@@ -51,8 +52,6 @@ with (oHuman) {
 if (bestTile == noone || bestTile.id == id) return false; 
 
 // Perform move
-bestTile = noone; 
-bestHuman = noone; 
 moveHuman(bestHuman,bestTile); 
 
 return true; 

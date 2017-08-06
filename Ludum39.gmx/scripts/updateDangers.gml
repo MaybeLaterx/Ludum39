@@ -11,11 +11,14 @@ with (argument0) {
         tile = insts[h];
         if (tile != noone) { 
             type = tile.object_index; 
-            if (type == oFloor && type != oHuman) { 
+            if (type != oWall && type != oShadow3) { 
                 for (i = 0; i < 3; i++) { // height
                     for (j = 0; j < 3; j++) { // width
                         if (instance_exists(tile)) { 
-                            if (!addToArray(tile.threats,id)) tile.threats[0] = id; 
+                            xx = tile.x - 32 + (32*j);
+                            yy = tile.y - 32 + (32*i);
+                            hitbox = instance_position(xx,yy,all);
+                            if (hitbox.object_index == oFloor || hitbox.object_index == oHuman) if (!addToArray(hitbox.threats,id)) hitbox.threats[0] = id; 
                             
                             /*
                             with (tile) { 

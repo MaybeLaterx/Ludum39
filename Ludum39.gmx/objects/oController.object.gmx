@@ -192,14 +192,19 @@ if ((global.ai == "humans" || global.ai == "both") &amp;&amp; humanTurn &amp;&am
 
         needMove = attemptMove(2); 
         if (!needMove) { 
+            trace("No one needs to move."); 
             needShoot = attemptShoot(true); 
             if (!needShoot) { 
+                trace("No one needs to shoot."); 
                 wantShoot = attemptShoot(false);
                 if (!wantShoot) { 
+                    trace("No one wants to shoot.");
                     shouldMove = attemptMove(1); 
                     if (!shouldMove) { 
+                        trace("No one should move."); 
                         wantMove = attemptMove(0); 
                         if (!wantMove) {
+                            trace("No one wants to move."); 
                             oController.powersLeft = 0; 
                             oController.movesLeft = 0;     
                         }

@@ -100,6 +100,9 @@ if (inside &amp;&amp; !oController.humanTurn &amp;&amp; !shadowSelected &amp;&am
     }
 }
 
+//draw_text(x,y,string(array_length_1d(threats)));
+//draw_text(x,y,string(array_length_1d(scopes)));
+draw_text(x,y,string(battery));
 </string>
           </argument>
         </arguments>
