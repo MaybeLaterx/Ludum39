@@ -206,6 +206,7 @@ if ((global.ai == "humans" || global.ai == "both") &amp;&amp; humanTurn &amp;&am
                         wantMove = attemptMove(0); 
                         if (!wantMove) {
                             trace("No one wants to move."); 
+                            // ## NEED TO ADD ANOTHER CHECK HERE TO SEE IF IT WANTS TO MOVE A POSITION THAT IS TWO BLOCKS AWAY THEN MOVE TOWARDS THAT
                             oController.powersLeft = 0; 
                             oController.movesLeft = 0;     
                         }
