@@ -72,7 +72,11 @@ battery = 99;
 adjacent = isAdjacent(x,y); 
 
 // Select/deselect
-if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController.humanTurn) { 
+if (mouse_check_button_pressed(mb_left) &amp;&amp; instance_position(mouse_x,mouse_y,oEndTurn)) { 
+    selected = false; 
+}
+
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController.humanTurn &amp;&amp; (global.ai != "humans" &amp;&amp; global.ai != "simulation")) { 
     selected = !selected; 
     if (selected) trace("Human selected");
     else trace("Human deselected");
