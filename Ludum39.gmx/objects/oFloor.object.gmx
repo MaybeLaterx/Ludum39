@@ -60,7 +60,7 @@ shadowSelected = false;
 with (oShadow1) if (selected) other.shadowSelected = true; 
 
 // Fill with shadow
-if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable &amp;&amp; !shadowSelected &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "both") { 
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable &amp;&amp; !shadowSelected &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
     instance_create(x,y,oShadow1);
     audio_play_sound(sndShadow,0,false);
     oController.powersLeft--; 
@@ -91,7 +91,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
             <string>draw_self(); 
 
 // Hover effect
-if (inside &amp;&amp; !oController.humanTurn &amp;&amp; !shadowSelected &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "both") { 
+if (inside &amp;&amp; !oController.humanTurn &amp;&amp; !shadowSelected &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
     suitable = isSuitable(x,y);
     if (suitable) draw_sprite(sOutline,0,x,y);
     else { 

@@ -29,6 +29,8 @@
 
 selected = false; 
 
+inside = false; 
+
 adjacent = false; 
 
 canAttack = false; 
@@ -57,35 +59,6 @@ canAttack = false;
             <string>inside = isInside(x,y); 
 
 adjacent = isAdjacent(x,y); 
-
-// Select
-if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn) { 
-    if (!selected) { 
-        selected = true; 
-        trace("Shadow selected");
-    } else { 
-        // Upgrade
-        if (oController.powersLeft &gt; 0) { 
-            audio_play_sound(sndShadow,0,false);
-            trace("Shadow upgraded");
-            instance_create(x,y,oShadow2); 
-            instance_destroy(); 
-            oController.powersLeft--;
-        }
-    }
-    
-    
-    if (selected) { 
-        with (oShadow1) if (id != other.id) selected = false;  
-    }
-}
-
-if (mouse_check_button_pressed(mb_right)) {
-    if (selected) { 
-        trace("Shadow deselected"); 
-        selected = false;
-    } 
-}
 
 // Attack
 if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; canAttack) { 
@@ -134,6 +107,40 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
             instance_destroy(); 
         }
     }
+}
+
+// Select
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn) { 
+    if (!selected) { 
+        selected = true; 
+        trace("Shadow selected");
+    } else { 
+        // Upgrade
+        if (oController.powersLeft &gt; 0) { 
+            audio_play_sound(sndShadow,0,false);
+            trace("Shadow upgraded");
+            instance_create(x,y,oShadow2); 
+            instance_destroy(); 
+            oController.powersLeft--;
+        }
+    }
+    
+    
+    if (selected) { 
+        with (oShadow1) if (id != other.id) selected = false;  
+    }
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+    if (selected) { 
+        trace("Shadow deselected"); 
+        selected = false;
+    } 
+}
+
+if (mouse_check_button_pressed(mb_left) &amp;&amp; selected &amp;&amp; !inside) {
+    trace("Shadow deselected"); 
+    selected = false;
 }
 
 
@@ -187,6 +194,49 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; canAttack) {
         }
     }
 }
+
+// Hover range display (humans) 
+dangerZones = 0; 
+if (inside &amp;&amp; oController.humanTurn) { 
+    size = 32;
+    insts[0] = instance_position(x + size,y,all); 
+    insts[1] = instance_position(x,y - size,all); 
+    insts[2] = instance_position(x - size,y,all); 
+    insts[3] = instance_position(x,y + size,all);
+    
+    for (h = 0; h &lt; 4; h++) { // directions
+        tile = insts[h];
+        if (tile != noone) { 
+            type = tile.object_index; 
+            if (type != oWall &amp;&amp; type != oShadow3) { 
+                for (i = 0; i &lt; 3; i++) { // height
+                    for (j = 0; j &lt; 3; j++) { // width
+                        if (instance_exists(tile)) { 
+
+                            xx = tile.x - 32 + (32*j);
+                            yy = tile.y - 32 + (32*i);
+                            
+                            coord = xx*1000000 + yy; 
+                            if (!addToArray(dangerZones,coord)) dangerZones[0] = coord; 
+                        }
+                    }
+                }    
+            }
+        }
+    }
+    
+    if (is_array(dangerZones)) { 
+        for (i = 0; i &lt; array_length_1d(dangerZones); i++) { 
+            xx = floor(dangerZones[i]/1000000);
+            yy = dangerZones[i] - (xx*1000000); 
+            draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
+            //trace(xx); 
+            //trace(yy);
+        }
+    }
+}
+
+
 </string>
           </argument>
         </arguments>

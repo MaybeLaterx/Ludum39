@@ -6,7 +6,8 @@ _flr = argument1;
 with (_hmn) { 
     newHuman = instance_create(other._flr.x,other._flr.y,oHuman);
     with (newHuman) { 
-        //selected = true;
+        if (global.ai != "shadows" || global.ai == "versus") selected = true;
+        
         if (!isBatteryAdjacent(x,y)) { 
             charge = other.charge;   
         } else if (other.charge < maxCharge) {

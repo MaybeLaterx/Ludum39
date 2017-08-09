@@ -65,6 +65,105 @@ canUpgrade = true;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>/// Shadows AI
+if ((global.ai == "shadows" || global.ai == "simulation") &amp;&amp; !humanTurn &amp;&amp; instance_exists(oHuman)) {
+    timer--; 
+    
+    if (timer &lt; 1) { 
+        trace("AI commencing");
+        
+        if (canKill) canKill = attemptKill(); 
+        else if (canSpawn) canSpawn = attemptSpawn(); 
+        else if (canUpgrade) canUpgrade = attemptUpgrade(); 
+        else oController.powersLeft = 0; 
+        
+        timer = maxTimer; 
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Humans AI
+if ((global.ai == "humans" || global.ai == "simulation") &amp;&amp; humanTurn &amp;&amp; (instance_exists(oShadow1) || instance_exists(oShadow2))) {
+    timer--; 
+    
+    if (timer &lt; 1) { 
+        trace("Human AI commencing");
+        
+            // Update tile information
+        resetVals(oHuman);
+        resetVals(oFloor); 
+        updateDangers(oShadow1);
+        // updateDangers(oShadow2); //add exception for growing shadow2s(?)
+        updateScopes(oShadow1); 
+        updateScopes(oShadow2); 
+        updateBatteryProximity(7); 
+        // updateWallProximity (so expensive!) 
+
+        needMove = attemptMove(2); 
+        if (!needMove) { 
+            trace("No one needs to move."); 
+            needShoot = attemptShoot(true); 
+            if (!needShoot) { 
+                trace("No one needs to shoot."); 
+                wantShoot = attemptShoot(false);
+                if (!wantShoot) { 
+                    trace("No one wants to shoot.");
+                    shouldMove = attemptMove(1); 
+                    if (!shouldMove) { 
+                        trace("No one should move."); 
+                        wantMove = attemptMove(0); 
+                        if (!wantMove) {
+                            trace("No one wants to move."); 
+                            // ## NEED TO ADD ANOTHER CHECK HERE TO SEE IF IT WANTS TO MOVE A POSITION THAT IS TWO BLOCKS AWAY THEN MOVE TOWARDS THAT
+                            oController.powersLeft = 0; 
+                            oController.movesLeft = 0;     
+                        }
+                    }
+                }
+            }
+        }
+        
+        timer = maxTimer; 
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>/// End turn
 if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) { 
     humanTurn = !humanTurn;
@@ -117,105 +216,6 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
     } else { 
         with (oShadow1) depth = -4; 
         with (oHuman) depth = -5; 
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Shadows AI
-if ((global.ai == "shadows" || global.ai == "both") &amp;&amp; !humanTurn &amp;&amp; instance_exists(oHuman)) {
-    timer--; 
-    
-    if (timer &lt; 1) { 
-        trace("AI commencing");
-        
-        if (canKill) canKill = attemptKill(); 
-        else if (canSpawn) canSpawn = attemptSpawn(); 
-        else if (canUpgrade) canUpgrade = attemptUpgrade(); 
-        else oController.powersLeft = 0; 
-        
-        timer = maxTimer; 
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Humans AI
-if ((global.ai == "humans" || global.ai == "both") &amp;&amp; humanTurn &amp;&amp; (instance_exists(oShadow1) || instance_exists(oShadow2))) {
-    timer--; 
-    
-    if (timer &lt; 1) { 
-        trace("Human AI commencing");
-        
-            // Update tile information
-        resetVals(oHuman);
-        resetVals(oFloor); 
-        updateDangers(oShadow1);
-        // updateDangers(oShadow2); //add exception for growing shadow2s(?)
-        updateScopes(oShadow1); 
-        updateScopes(oShadow2); 
-        updateBatteryProximity(7); 
-        // updateWallProximity (so expensive!) 
-
-        needMove = attemptMove(2); 
-        if (!needMove) { 
-            trace("No one needs to move."); 
-            needShoot = attemptShoot(true); 
-            if (!needShoot) { 
-                trace("No one needs to shoot."); 
-                wantShoot = attemptShoot(false);
-                if (!wantShoot) { 
-                    trace("No one wants to shoot.");
-                    shouldMove = attemptMove(1); 
-                    if (!shouldMove) { 
-                        trace("No one should move."); 
-                        wantMove = attemptMove(0); 
-                        if (!wantMove) {
-                            trace("No one wants to move."); 
-                            // ## NEED TO ADD ANOTHER CHECK HERE TO SEE IF IT WANTS TO MOVE A POSITION THAT IS TWO BLOCKS AWAY THEN MOVE TOWARDS THAT
-                            oController.powersLeft = 0; 
-                            oController.movesLeft = 0;     
-                        }
-                    }
-                }
-            }
-        }
-        
-        timer = maxTimer; 
     }
 }
 </string>

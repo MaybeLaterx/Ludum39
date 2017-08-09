@@ -52,7 +52,7 @@ botTurn = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>botTurn = ((oController.humanTurn == true &amp;&amp; (global.ai == "humans" || global.ai == "both"))    ||  (oController.humanTurn == false &amp;&amp; (global.ai == "shadows" || global.ai == "both"))); 
+            <string>botTurn = ((oController.humanTurn == true &amp;&amp; (global.ai == "humans" || global.ai == "simulation"))    ||  (oController.humanTurn == false &amp;&amp; (global.ai == "shadows" || global.ai == "simulation"))); 
 
 
 if (position_meeting(mouse_x,mouse_y,id)) { 

@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (isInside(x,y) &amp;&amp; mouse_check_button_released(mb_left)) room_goto(rStart);
+            <string>if (isInside(x,y) &amp;&amp; mouse_check_button_released(mb_left)) { 
+    audio_stop_all(); 
+    room_goto(rStart);
+}
 </string>
           </argument>
         </arguments>
