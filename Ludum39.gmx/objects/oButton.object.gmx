@@ -56,7 +56,7 @@ botTurn = false;
     txtCol = make_color_rgb(249, 250, 165);
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         audio_play_sound(sndSelect,0,false);
-        if (txt == "instructions") room_goto(rInstructions);
+        if (txt == "help") room_goto(rInstructions);
         else { 
             // humans, shadows, versus, simulation
             switch (txt) { 

@@ -149,6 +149,69 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; selected &amp;&amp; !inside) 
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Hover range display (humans) 
+dangerZones = 0; 
+if (inside &amp;&amp; oController.humanTurn) { 
+    size = 32;
+    insts[0] = instance_position(x + size,y,all); 
+    insts[1] = instance_position(x,y - size,all); 
+    insts[2] = instance_position(x - size,y,all); 
+    insts[3] = instance_position(x,y + size,all);
+    
+    for (h = 0; h &lt; 4; h++) { // directions
+        tile = insts[h];
+        if (tile != noone) { 
+            type = tile.object_index; 
+            if (type != oWall &amp;&amp; type != oShadow3) { 
+                for (i = 0; i &lt; 3; i++) { // height
+                    for (j = 0; j &lt; 3; j++) { // width
+                        if (instance_exists(tile)) { 
+
+                            xx = tile.x - 32 + (32*j);
+                            yy = tile.y - 32 + (32*i);
+                            
+                            coord = xx*1000000 + yy; 
+                            if (!addToArray(dangerZones,coord)) dangerZones[0] = coord; 
+                        }
+                    }
+                }    
+            }
+        }
+    }
+    
+    if (is_array(dangerZones)) { 
+        for (i = 0; i &lt; array_length_1d(dangerZones); i++) { 
+            xx = floor(dangerZones[i]/1000000);
+            yy = dangerZones[i] - (xx*1000000); 
+            draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
+            //trace(xx); 
+            //trace(yy);
+        }
+    }
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -195,46 +258,6 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; canAttack) {
     }
 }
 
-// Hover range display (humans) 
-dangerZones = 0; 
-if (inside &amp;&amp; oController.humanTurn) { 
-    size = 32;
-    insts[0] = instance_position(x + size,y,all); 
-    insts[1] = instance_position(x,y - size,all); 
-    insts[2] = instance_position(x - size,y,all); 
-    insts[3] = instance_position(x,y + size,all);
-    
-    for (h = 0; h &lt; 4; h++) { // directions
-        tile = insts[h];
-        if (tile != noone) { 
-            type = tile.object_index; 
-            if (type != oWall &amp;&amp; type != oShadow3) { 
-                for (i = 0; i &lt; 3; i++) { // height
-                    for (j = 0; j &lt; 3; j++) { // width
-                        if (instance_exists(tile)) { 
-
-                            xx = tile.x - 32 + (32*j);
-                            yy = tile.y - 32 + (32*i);
-                            
-                            coord = xx*1000000 + yy; 
-                            if (!addToArray(dangerZones,coord)) dangerZones[0] = coord; 
-                        }
-                    }
-                }    
-            }
-        }
-    }
-    
-    if (is_array(dangerZones)) { 
-        for (i = 0; i &lt; array_length_1d(dangerZones); i++) { 
-            xx = floor(dangerZones[i]/1000000);
-            yy = dangerZones[i] - (xx*1000000); 
-            draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
-            //trace(xx); 
-            //trace(yy);
-        }
-    }
-}
 
 
 </string>

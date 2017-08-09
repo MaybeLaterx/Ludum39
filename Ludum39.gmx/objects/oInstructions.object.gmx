@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>instructions = "SHADOWS
 Spawn level 1 shadow: click next to a wall
-Attack with level 1 shadow: click shadow, click in direction to attack in
+Attack with level 1 shadow: click shadow, click in direction of attack
 Level up level 1 shadow: double click
 
 Shadows level up in corners. A level 3 shadow is permanent!
@@ -37,7 +37,9 @@ Select human: left click
 Move human: left click adjacent tile (can move diagonally) 
 Attack with humans: left click two spaces away to shine up to five tiles away (cannot attack diagonally)
 
-Humans have a maximum 3 charges. Batteries re-fill your charges.";
+Humans have a maximum 3 charges. Batteries re-fill your charges.
+
+Press F5 to randomly cycle through level layouts on the play screen.";
 
 w = room_width - 100;
 </string>
@@ -62,7 +64,9 @@ w = room_width - 100;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_text_ext(x,y, instructions,-1,w);
+            <string>draw_set_font(fntCubic);
+
+draw_text_ext(x,y, instructions,-1,w);
 
 </string>
           </argument>
