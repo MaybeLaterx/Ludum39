@@ -119,9 +119,14 @@
     <object>objects\oPortraitHuman</object>
     <object>objects\oPortraitShadow</object>
     <object>objects\oInstructions</object>
+    <object>objects\oPreview</object>
+    <object>objects\oLevelChange</object>
+    <object>objects\oConfirmLevel</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rSplash</room>
     <room>rooms\rStart</room>
+    <room>rooms\rLevelSelect</room>
     <room>rooms\rInstructions</room>
     <room>rooms\rGame</room>
     <room>rooms\rShadows</room>

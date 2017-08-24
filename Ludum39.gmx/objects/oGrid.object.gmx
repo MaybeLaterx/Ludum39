@@ -170,7 +170,6 @@ for (i = 0; i &lt; height; i++) {
         xx = xOffset + j*size; 
         yy = yOffset + i*size;
         
-        //trace(tile); 
         switch (tile) { 
             case "H" : instance_create(xx,yy,oHuman); break;
             case "B" : instance_create(xx,yy,oBattery); break;
