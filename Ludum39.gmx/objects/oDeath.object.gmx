@@ -54,20 +54,8 @@ with (oDeath) {
     if (id != other.id &amp;&amp; sprite_index == sHumanDeath) other.dyingHuman = true;
 } 
 
-
 if (!dyingHuman &amp;&amp; sprite_index == sHumanDeath &amp;&amp; !instance_exists(oHuman)) {
-    if (global.ai == "humans") { 
-        ini_open("Save.sav"); 
-        ini_write_real("Shadow levels unlocked",string(global.currentLevel+1),true);
-        ini_close(); 
-    } else if (global.ai == "shadows") { 
-        ini_open("Save.sav"); 
-        ini_write_real("Human levels unlocked",string(global.currentLevel+1),true);
-        ini_close(); 
-    }
-    
     room_goto(rShadows);
-    
 }
 </string>
           </argument>

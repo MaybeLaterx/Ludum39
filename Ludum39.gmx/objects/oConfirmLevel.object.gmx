@@ -56,8 +56,9 @@ available = true;
     txtCol = make_color_rgb(249, 250, 165);
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         if (available) { 
-            room_goto(rGame); 
+            global.layout = oPreview.layout; 
             audio_play_sound(sndSelect,0,false);
+            room_goto(rGame); 
         } else audio_play_sound(sndError,0,false); 
     } else if (mouse_check_button(mb_left)) image_index = 2;      // Held
     else image_index = 1;     // Hovered
@@ -97,6 +98,9 @@ draw_set_font(fntCubicXL);
 if (available) txt = "PLAY"; 
 else txt = "LOCKED"; 
 draw_text(x,y,txt);
+
+draw_set_colour($4d4d4d);
+draw_text(x,75,string(global.currentLevel+1) + "/" + string(oLevelChange.maxLevels+1));
 </string>
           </argument>
         </arguments>

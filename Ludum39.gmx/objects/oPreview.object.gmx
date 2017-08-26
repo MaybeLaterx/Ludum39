@@ -78,7 +78,10 @@ grid = ds_grid_create(0,0);
 if (currentLevel != global.currentLevel) { 
     currentLevel = global.currentLevel; 
     
-    switch (global.currentLevel) { 
+    if (global.ai == "humans") swapSelect = oLevelChange.maxLevels - currentLevel;
+    else swapSelect = currentLevel; 
+    
+    switch (swapSelect) { 
         case 0 : layout = "XXXXXXXXXXXXXXXXXXXXXX#XXXXXXXXX000XXXXXXXXXX#XXXXXXXX0000000XXXXXXX#XXXXXXX0000000000XXXXX#XXXXXX00000000000XXXXX#XXX0000000000H0000XXXX#XX00000H00B0000000000X#X0000000000000000000XX#XXXX000000000000000XXX#XXXXX0000000000000XXXX#XXXXXXX000000XXXXXXXXX#XXXXXXXXX000XXXXXXXXXX#XXXXXXXXXXX0XXXXXXXXXX#XXXXXXXXXXXXXXXXXXXXXX";
                 break;
         case 1 : layout = "XXXXXXXXXXXXXXXXXXX#XXXXXXXX000X00XXXXX#XXXXXX000000000XXXX#XXXX000000H00000XXX#XXXX00000000B0000XX#XXXX0000000000000XX#XXX000000XX000000XX#X000000000XXX0000XX#XX0000H000XX000000X#XX0000000000000000X#XX00000B0000000000X#X0000000000H00000XX#XXX00000000000000XX#XXXXX00000000000XXX#XXXXXXXXX000X0XXXXX#XXXXXXXXXXXXXXXXXXX";
@@ -89,6 +92,8 @@ if (currentLevel != global.currentLevel) {
                 break; 
         case 4 : layout = "XXXXXXXXXXXXXXXXX#XXXXXX0XXXXXXXXXX#XXX0XX0XX0XXX00XX#XXX0000X00XX000XX#XX00000000X00000X#XX0000000000000XX#XXXB000HHH0000XXX#X0000000000BXXXXX#XX00X00000000XXXX#X000X0X0X000000XX#XX00XXX0X0X00000X#XXXXXXXXXXXXX0XXX#XXXXXXXXXXXXXXXXX";
                 break; 
+        default : layout = "XXX#X0X#XXX"; 
+                break;
     } 
        
     width = getLayoutWidth(layout);
@@ -156,7 +161,7 @@ for (i = 0; i &lt; height; i++) {
         //trace(tile); 
         draw_sprite_ext(sFloor,0,xx,yy,scale,scale,0,-1,1); 
         switch (tile) { 
-            case "H" : draw_sprite_ext(sHumanIdleL,0,xx,yy,scale,scale,0,-1,1); break;
+            case "H" : draw_sprite_ext(sHumanIdleR,0,xx,yy,scale,scale,0,-1,1); break;
             case "B" : draw_sprite_ext(sBattery,0,xx,yy,scale,scale,0,-1,1); break;
             //case "0" : draw_sprite(sFloor,0,xx,yy); break;
             case "1" : draw_sprite_ext(sShadow1,0,xx,yy,scale,scale,0,-1,1); break;

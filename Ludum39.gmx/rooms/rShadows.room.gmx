@@ -13,7 +13,14 @@
   <code>audio_stop_sound(sndMusic1);
 audio_stop_sound(sndMusic2); 
 audio_stop_sound(sndMusic3);  
-audio_play_sound(sndShadowWin,0,false);</code>
+audio_play_sound(sndShadowWin,0,false);
+
+
+if (global.ai == "humans") { 
+    ini_open("Save.sav"); 
+    ini_write_real("Shadow levels unlocked",string(global.currentLevel+1),true);
+    ini_close(); 
+}</code>
   <enableViews>0</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
