@@ -3,7 +3,9 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\KongAPI</extension>
+  </NewExtensions>
   <sounds name="sound">
     <sounds name="Music">
       <sound>sound\sndMenu</sound>
@@ -128,6 +130,7 @@
     <object>objects\oConfirmLevel</object>
     <object>objects\oMuteMusic</object>
     <object>objects\oMuteSfx</object>
+    <object>objects\oKongLogin</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rSplash</room>
