@@ -39,7 +39,7 @@ with (oShadow1) {
             }
             
             if (attack) { 
-                audio_play_sound(sndHumanDeath,0,false); 
+                if (!global.mutedSfx) audio_play_sound(sndHumanDeath,0,false); 
                 oController.powersLeft--; 
                 instance_create(x,y,oFloor); 
                 death = instance_create(x,y,oDeath);

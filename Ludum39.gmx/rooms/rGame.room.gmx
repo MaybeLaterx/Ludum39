@@ -55,13 +55,12 @@ randomize();</code>
   <instances>
     <instance objName="oGrid" x="1088" y="576" name="inst_4DA97371" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oController" x="1088" y="512" name="inst_279B0EF1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oReseed" x="1088" y="352" name="inst_4C662C9D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oAudio" x="1088" y="416" name="inst_733E3DFE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPortraitHuman" x="64" y="704" name="inst_937B4C9F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oPortraitShadow" x="928" y="704" name="inst_226458ED" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oTurns" x="480" y="704" name="inst_92B09A63" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oEndTurn" x="736" y="64" name="inst_A2A4749A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oMenuButton" x="64" y="64" name="inst_511CE188" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="oMenuButton" x="32" y="32" name="inst_511CE188" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
+    <instance objName="oMuteMusic" x="96" y="32" name="inst_A92D37D9" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

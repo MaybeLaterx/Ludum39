@@ -52,8 +52,8 @@ with (humanInst) {
         }
     }
         
-    if (kill) audio_play_sound(sndShadowDeath,0,false); 
+    if (kill && !global.mutedSfx) audio_play_sound(sndShadowDeath,0,false); 
     
     if (!instance_exists(oShadow1) && !instance_exists(oShadow2)) room_goto(rHumans);
-    else audio_play_sound(sndFlashlight,0,false);
+    else if (!global.mutedSfx) audio_play_sound(sndFlashlight,0,false);
 }

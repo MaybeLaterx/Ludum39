@@ -43,7 +43,7 @@ while (oController.powersLeft > 0 && attempts < 50) {
             instance_create(tile.x,tile.y,oShadow1);
             with (tile) instance_destroy();
             oController.powersLeft--;
-            audio_play_sound(sndShadow,0,false); 
+            if (!global.mutedSfx) audio_play_sound(sndShadow,0,false); 
             ds_list_destroy(corners);
             ds_list_destroy(singles); 
             return true;

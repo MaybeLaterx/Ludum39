@@ -13,7 +13,7 @@
   <code>audio_stop_sound(sndMusic1);
 audio_stop_sound(sndMusic2); 
 audio_stop_sound(sndMusic3);  
-audio_play_sound(sndShadowWin,0,false);
+if (!global.mutedMusic) audio_play_sound(sndShadowWin,0,false);
 
 
 if (global.ai == "humans") { 

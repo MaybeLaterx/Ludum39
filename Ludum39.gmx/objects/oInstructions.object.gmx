@@ -37,9 +37,7 @@ Select human: left click
 Move human: left click adjacent tile (can move diagonally) 
 Attack with humans: left click two spaces away to shine up to five tiles away (cannot attack diagonally)
 
-Humans have a maximum 3 charges. Batteries re-fill your charges.
-
-Press F5 to randomly cycle through level layouts on the play screen.";
+Humans have a maximum 3 charges. Batteries re-fill your charges.";
 
 w = room_width - 100;
 </string>

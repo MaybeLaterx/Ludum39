@@ -97,7 +97,7 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
             }
             
             if (kill) {
-                audio_play_sound(sndHumanDeath,0,false); 
+                if (!global.mutedSfx) audio_play_sound(sndHumanDeath,0,false); 
                 //if (!instance_exists(oHuman)) room_goto(rShadows);
             }
             
@@ -117,7 +117,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
     } else { 
         // Upgrade
         if (oController.powersLeft &gt; 0) { 
-            audio_play_sound(sndShadow,0,false);
+            if (!global.mutedSfx) audio_play_sound(sndShadow,0,false);
             trace("Shadow upgraded");
             instance_create(x,y,oShadow2); 
             instance_destroy(); 

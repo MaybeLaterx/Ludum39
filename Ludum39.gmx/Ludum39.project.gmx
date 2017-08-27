@@ -60,6 +60,10 @@
     <sprite>sprites\sIconMove</sprite>
     <sprite>sprites\sIconPlace</sprite>
     <sprite>sprites\sTurns</sprite>
+    <sprite>sprites\sMusicOff</sprite>
+    <sprite>sprites\sMusicOn</sprite>
+    <sprite>sprites\sSfxOff</sprite>
+    <sprite>sprites\sSfxOn</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -122,6 +126,7 @@
     <object>objects\oPreview</object>
     <object>objects\oLevelChange</object>
     <object>objects\oConfirmLevel</object>
+    <object>objects\oMuteMusic</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rSplash</room>

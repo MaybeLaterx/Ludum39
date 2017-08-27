@@ -12,10 +12,10 @@ with (_hmn) {
             charge = other.charge;   
         } else if (other.charge < maxCharge) {
             charge = maxCharge;
-            audio_play_sound(sndRecharge,0,false); 
+            if (!global.mutedSfx) audio_play_sound(sndRecharge,0,false); 
         }
     }
-    audio_play_sound(sndMove,0,false);
+    if (!global.mutedSfx) audio_play_sound(sndMove,0,false);
     oController.movesLeft--;
     instance_create(x,y,oFloor); 
     with (other._flr) instance_destroy(); 

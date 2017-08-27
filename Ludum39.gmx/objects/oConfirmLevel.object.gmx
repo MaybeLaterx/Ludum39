@@ -57,9 +57,9 @@ available = true;
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         if (available) { 
             global.layout = oPreview.layout; 
-            audio_play_sound(sndSelect,0,false);
+            if (!global.mutedSfx) audio_play_sound(sndSelect,0,false);
             room_goto(rGame); 
-        } else audio_play_sound(sndError,0,false); 
+        } else if (!global.mutedSfx) audio_play_sound(sndError,0,false); 
     } else if (mouse_check_button(mb_left)) image_index = 2;      // Held
     else image_index = 1;     // Hovered
 } else { // Normal
