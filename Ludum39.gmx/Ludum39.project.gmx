@@ -127,6 +127,7 @@
     <object>objects\oLevelChange</object>
     <object>objects\oConfirmLevel</object>
     <object>objects\oMuteMusic</object>
+    <object>objects\oMuteSfx</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rSplash</room>

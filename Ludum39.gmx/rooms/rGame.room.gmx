@@ -61,6 +61,7 @@ randomize();</code>
     <instance objName="oEndTurn" x="736" y="64" name="inst_A2A4749A" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oMenuButton" x="32" y="32" name="inst_511CE188" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="180"/>
     <instance objName="oMuteMusic" x="96" y="32" name="inst_A92D37D9" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
+    <instance objName="oMuteSfx" x="160" y="32" name="inst_7ED778D8" locked="0" code="" scaleX="2" scaleY="2" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

@@ -14,7 +14,7 @@
 ini_write_real("Human levels unlocked","0",true); 
 ini_write_real("Shadow levels unlocked","0",true);
 global.mutedMusic = ini_read_real("Muted","music",false);
-global.mutedSfx = ini_read_real("Muted","music",false);  
+global.mutedSfx = ini_read_real("Muted","sfx",false);  
 ini_close(); 
 
 global.currentLevel = 0; 
