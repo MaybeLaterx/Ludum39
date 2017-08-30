@@ -107,6 +107,7 @@
     <object>objects\oHuman</object>
     <object>objects\oBattery</object>
     <object>objects\oFloor</object>
+    <object>objects\oShadows</object>
     <object>objects\oShadow0</object>
     <object>objects\oShadow1</object>
     <object>objects\oShadow2</object>

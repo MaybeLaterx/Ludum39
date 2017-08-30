@@ -117,26 +117,58 @@ if (mouse_check_button_pressed(mb_right)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// Shine light
-if (selected &amp;&amp; mouse_check_button_pressed(mb_left) 
+            <string>/// Shine light
+if (selected 
+&amp;&amp; mouse_check_button_pressed(mb_left)
+&amp;&amp; oController.powersLeft &gt; 0 
+&amp;&amp; !adjacent &amp;&amp; charge &gt; 0 
+&amp;&amp; instance_exists(hShadow) 
+&amp;&amp; (hShadow.x = x || hShadow.y == y)) 
+    shootBeam(id,dir); 
+
+/*
+if (selected 
+&amp;&amp; mouse_check_button_pressed(mb_left) 
 &amp;&amp; quadrant != 0 
 &amp;&amp; !inside 
 &amp;&amp; oController.powersLeft &gt; 0 
 &amp;&amp; !adjacent 
 &amp;&amp; charge &gt; 0) 
     shootBeam(id,dir); 
+*/
 
 if (shining) {
     if (timer &lt;= 0) shining = false; 
     else timer--; 
 }
 
-// Move
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Move
 if (selected &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; !inside &amp;&amp; adjacent &amp;&amp; oController.movesLeft &gt; 0) {
     flr = instance_position(mouse_x,mouse_y,oFloor);
     if (flr != noone) moveHuman(id,flr);  
 }
-
 
 </string>
           </argument>
@@ -210,8 +242,9 @@ if (selected) {
 draw_self(); 
 
 // Hover light options
-if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent &amp;&amp; charge &gt; 0) { 
-pd = point_direction(x,y,mouse_x,mouse_y);
+hShadow = instance_position(mouse_x,mouse_y,oShadows); 
+if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent &amp;&amp; charge &gt; 0 &amp;&amp; instance_exists(hShadow) &amp;&amp; (hShadow.x = x || hShadow.y == y)) { 
+    pd = point_direction(x,y,mouse_x,mouse_y);
     if (pd &gt; 315 || pd &lt; 45) quadrant = 1; 
     else if (pd &gt; 45 &amp;&amp; pd &lt; 135) quadrant = 2; 
     else if (pd &gt; 135 &amp;&amp; pd &lt; 225) quadrant = 3;   

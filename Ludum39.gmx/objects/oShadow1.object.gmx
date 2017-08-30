@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>-4</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>oShadows</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -168,7 +168,9 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; selected &amp;&amp; !inside) 
             <kind>1</kind>
             <string>// Hover range display (humans) 
 dangerZones = 0; 
-if (inside &amp;&amp; oController.humanTurn) { 
+hSelected = false; 
+with (oHuman) if (selected) other.hSelected = true; 
+if (!hSelected &amp;&amp; inside &amp;&amp; (selected || oController.humanTurn)) { 
     size = 32;
     insts[0] = instance_position(x + size,y,all); 
     insts[1] = instance_position(x,y - size,all); 
