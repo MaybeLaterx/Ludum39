@@ -117,12 +117,21 @@ if ((global.ai == "humans" || global.ai == "simulation") &amp;&amp; humanTurn &a
         updateBatteryProximity(7); 
         // updateWallProximity (so expensive!) 
 
+        /* alternative move priority
         needMove = attemptMove(2); 
         if (!needMove) { 
             trace("No one needs to move."); 
             needShoot = attemptShoot(true); 
             if (!needShoot) { 
                 trace("No one needs to shoot."); 
+        */
+        
+        needShoot = attemptShoot(true); 
+        if (!needShoot) { 
+            trace("No one needs to shoot."); 
+            needMove = attemptMove(2); 
+            if (!needMove) { 
+                trace("No one needs to move."); 
                 wantShoot = attemptShoot(false);
                 if (!wantShoot) { 
                     trace("No one wants to shoot.");
@@ -132,9 +141,17 @@ if ((global.ai == "humans" || global.ai == "simulation") &amp;&amp; humanTurn &a
                         wantMove = attemptMove(0); 
                         if (!wantMove) {
                             trace("No one wants to move."); 
-                            // ## NEED TO ADD ANOTHER CHECK HERE TO SEE IF IT WANTS TO MOVE A POSITION THAT IS TWO BLOCKS AWAY THEN MOVE TOWARDS THAT
-                            oController.powersLeft = 0; 
-                            oController.movesLeft = 0;     
+                            wantDoubleMove = attemptMacroMove(2); 
+                            if (!wantDoubleMove) { 
+                                trace("No one wants to double move."); 
+                                //wantTripleMove = attemptMacroMove(3); 
+                                //if (!wantTripleMove) { 
+                                    //trace("No one wants to triple move."); 
+                                    trace("Ending turn");
+                                    oController.powersLeft = 0; 
+                                    oController.movesLeft = 0;
+                                //}
+                            }     
                         }
                     }
                 }
