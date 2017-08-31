@@ -188,6 +188,13 @@ if ((global.ai == "humans" || global.ai == "simulation") &amp;&amp; humanTurn /*
             <kind>1</kind>
             <string>/// End turn
 if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) { 
+    dyingHuman = false;
+    with (oDeath) if (sprite_index == sHumanDeath) other.dyingHuman = true; 
+    if (turnsElapsed &gt;= maxTurns) {
+        if (!dyingHuman) room_goto(rHumans);
+        else room_goto(rShadows); 
+    }
+
     humanTurn = !humanTurn;
     turnsElapsed++; 
     movesLeft = maxMoves; 
@@ -235,11 +242,12 @@ if ((movesLeft &lt; 1 || !humanTurn) &amp;&amp; powersLeft &lt; 1) {
             sprite_index = sHumanIdleR;
         }
         
-        if (turnsElapsed &gt;= maxTurns) room_goto(rHumans);
     } else { 
         with (oShadow1) depth = -4; 
         with (oHuman) depth = -5; 
     }
+    
+    
 }
 </string>
           </argument>

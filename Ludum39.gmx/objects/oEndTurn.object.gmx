@@ -59,9 +59,13 @@ if (position_meeting(mouse_x,mouse_y,id)) {
     txtCol = make_color_rgb(249, 250, 165);
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         if (!botTurn) { 
-            if (!global.mutedSfx) audio_play_sound(sndSelect,0,false);
-            oController.movesLeft = 0; 
-            oController.powersLeft = 0; 
+            if (oController.turnsElapsed == 1) { 
+                if (!global.mutedSfx) audio_play_sound(sndError,0,false);
+            } else { 
+                if (!global.mutedSfx) audio_play_sound(sndSelect,0,false);
+                oController.movesLeft = 0; 
+                oController.powersLeft = 0; 
+            }
         }
         //txtCol = $f9faa5; 
     } else if (mouse_check_button(mb_left)) {     // Held
