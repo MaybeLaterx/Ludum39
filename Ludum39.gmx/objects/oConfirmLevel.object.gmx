@@ -57,6 +57,7 @@ available = true;
     if (mouse_check_button_released(mb_left)) { // Click confirmed
         if (available) { 
             global.layout = oPreview.layout; 
+            global.humanCount = oPreview.humanCount; 
             if (!global.mutedSfx) audio_play_sound(sndSelect,0,false);
             room_goto(rGame); 
         } else if (!global.mutedSfx) audio_play_sound(sndError,0,false); 

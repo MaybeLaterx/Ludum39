@@ -94,6 +94,7 @@
     <script>scripts\shootBeam.gml</script>
     <script>scripts\moveHuman.gml</script>
     <script>scripts\attemptMacroMove.gml</script>
+    <script>scripts\placeHuman.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fntCubic</font>

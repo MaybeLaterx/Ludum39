@@ -57,6 +57,11 @@ with (oDeath) {
 if (!dyingHuman &amp;&amp; sprite_index == sHumanDeath &amp;&amp; !instance_exists(oHuman)) {
     room_goto(rShadows);
 }
+
+trace(string(instance_number(oHuman)) + " humans remaining.");
+with (oHuman) { 
+    trace("X: " + string(x) + "#Y: " + string(y));
+}
 </string>
           </argument>
         </arguments>

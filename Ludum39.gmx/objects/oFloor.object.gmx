@@ -59,13 +59,22 @@ battery = 99;
 shadowSelected = false; 
 with (oShadow1) if (selected) other.shadowSelected = true; 
 
-// Fill with shadow
+// Place shadow
 if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable &amp;&amp; !shadowSelected &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
     instance_create(x,y,oShadow1);
     if (!global.mutedSfx) audio_play_sound(sndShadow,0,false);
     oController.powersLeft--; 
     instance_destroy(); 
 }
+
+// Place human
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; oController.turnsElapsed == 1 &amp;&amp; global.ai != "humans" &amp;&amp; global.ai != "simulation") { 
+    instance_create(x,y,oHuman);
+    if (!global.mutedSfx) audio_play_sound(sndMove,0,false);
+    oController.powersLeft--; 
+    instance_destroy(); 
+}
+
 </string>
           </argument>
         </arguments>
@@ -98,6 +107,11 @@ if (inside &amp;&amp; !oController.humanTurn &amp;&amp; !shadowSelected &amp;&am
         draw_sprite_ext(sOutlineCross,0,x,y,1,1,0,-1,0.75);
         if (mouse_check_button_pressed(mb_left) &amp;&amp; !global.mutedSfx) audio_play_sound(sndError,0,false);
     }
+}
+
+if (inside &amp;&amp; oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; oController.turnsElapsed == 1 &amp;&amp; global.ai != "humans" &amp;&amp; global.ai != "simulation") { 
+    draw_sprite(sOutline,0,x,y);
+    draw_sprite_ext(sHumanIdleR,0,x,y,1,1,0,-1,0.5);
 }
 
 //draw_text(x,y,string(array_length_1d(threats)));

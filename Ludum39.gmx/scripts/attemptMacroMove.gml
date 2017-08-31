@@ -16,8 +16,8 @@ with (oHuman) {
             if (j == 0 || j == other.moveDist*2 || i == 0 || i = other.moveDist*2) { // border tile
                 xx = x - (32*other.moveDist) + (32*j); 
                 yy = y - (32*other.moveDist) + (32*i); 
-                flr = instance_position(xx,yy,all);
-                if (flr.object_index = oFloor) { 
+                flr = instance_position(xx,yy,oFloor);
+                if (instance_exists(flr)) { 
                     flrRating = array_length_1d(flr.threats)*10 - array_length_1d(flr.scopes)*(charge>0) + flr.battery/10;
                     newDiff = ownRating - flrRating;
                     if (newDiff > other.bestDiff) {

@@ -66,6 +66,7 @@ botTurn = false;
                 case "simulation" : global.ai = "simulation"; break; 
             }        
             room_goto(rLevelSelect);
+            global.currentLevel = 0; 
         }
 
         //txtCol = $f9faa5; 

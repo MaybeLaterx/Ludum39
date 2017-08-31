@@ -17,7 +17,7 @@ with (oHuman) {
                 xx = x - 32 + (32*j); 
                 yy = y - 32 + (32*i); 
                 flr = instance_position(xx,yy,all);
-                if (flr.object_index = oFloor) { 
+                if (instance_exists(flr) && flr.object_index = oFloor) { 
                     flrRating = array_length_1d(flr.threats)*10 - array_length_1d(flr.scopes)*(charge>0) + flr.battery/10;
                     newDiff = ownRating - flrRating;
                     if (newDiff > other.bestDiff) { 

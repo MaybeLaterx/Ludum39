@@ -67,16 +67,15 @@ battery = 99;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>inside = isInside(x,y);
-
+            <string>/// Select/deselect
+inside = isInside(x,y);
 adjacent = isAdjacent(x,y); 
 
-// Select/deselect
 if (mouse_check_button_pressed(mb_left) &amp;&amp; instance_position(mouse_x,mouse_y,oEndTurn)) { 
     selected = false; 
 }
 
-if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController.humanTurn &amp;&amp; (global.ai != "humans" &amp;&amp; global.ai != "simulation")) { 
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; oController.humanTurn &amp;&amp; oController.turnsElapsed != 1 &amp;&amp; (global.ai != "humans" &amp;&amp; global.ai != "simulation")) { 
     selected = !selected; 
     if (selected) trace("Human selected");
     else trace("Human deselected");
@@ -121,7 +120,7 @@ if (mouse_check_button_pressed(mb_right)) {
 if (selected 
 &amp;&amp; mouse_check_button_pressed(mb_left)
 &amp;&amp; oController.powersLeft &gt; 0 
-&amp;&amp; !adjacent &amp;&amp; charge &gt; 0 
+&amp;&amp; charge &gt; 0 
 &amp;&amp; instance_exists(hShadow) 
 &amp;&amp; (hShadow.x = x || hShadow.y == y)) 
     shootBeam(id,dir); 
@@ -243,7 +242,7 @@ draw_self();
 
 // Hover light options
 hShadow = instance_position(mouse_x,mouse_y,oShadows); 
-if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; !adjacent &amp;&amp; charge &gt; 0 &amp;&amp; instance_exists(hShadow) &amp;&amp; (hShadow.x = x || hShadow.y == y)) { 
+if (selected &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; charge &gt; 0 &amp;&amp; instance_exists(hShadow) &amp;&amp; (hShadow.x = x || hShadow.y == y)) { 
     pd = point_direction(x,y,mouse_x,mouse_y);
     if (pd &gt; 315 || pd &lt; 45) quadrant = 1; 
     else if (pd &gt; 45 &amp;&amp; pd &lt; 135) quadrant = 2; 

@@ -78,11 +78,16 @@ LTY = LY;
     draw_set_font(fntCubicL);
     draw_set_color(make_color_rgb(249, 250, 165));
     
-    draw_sprite_ext(sIconLight,0,LX,LY,2,2,0,-1,1);
-    draw_text(LTX,LTY,string(oController.powersLeft));
-    
-    draw_sprite_ext(sIconMove,0,MX,MY,2,2,0,-1,1);
-    draw_text(MTX,MTY,string(oController.movesLeft));
+    if (oController.turnsElapsed != 1) { 
+        draw_sprite_ext(sIconLight,0,LX,LY,2,2,0,-1,1);
+        draw_text(LTX,LTY,string(oController.powersLeft));
+        
+        draw_sprite_ext(sIconMove,0,MX,MY,2,2,0,-1,1);
+        draw_text(MTX,MTY,string(oController.movesLeft));
+    } else { 
+        draw_sprite_ext(sIconPlace,0,MX,MY,2,2,0,-1,1);
+        draw_text(MTX,MTY,string(oController.powersLeft));
+    }
 } 
 
 </string>
