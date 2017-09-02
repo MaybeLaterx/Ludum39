@@ -25,19 +25,24 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instructions = "SHADOWS
+            <string>instructions = "The lights go out, the humans have nothing but a few measly flashlights to keep the shadows at bay. Will the darkness closing in from the walls pick them off one by one, or will the humans survive long enough to outlast the shadows?
+
+If the humans survive until turn 40, they win!
+
+HUMANS
+Place human (on turn 1): left click empty tile
+Select human: left click 
+Move human: when selected, left click adjacent tile (can move diagonally) 
+Attack with humans: when selected, left click target (5 range, cannot attack diagonally)
+
+Humans have a maximum 3 charges. Batteries re-fill your charges.
+
+SHADOWS
 Spawn level 1 shadow: click next to a wall
 Attack with level 1 shadow: click shadow, click in direction of attack
 Level up level 1 shadow: double click
 
-Shadows level up in corners. A level 3 shadow is permanent!
-
-HUMANS
-Select human: left click 
-Move human: left click adjacent tile (can move diagonally) 
-Attack with humans: left click two spaces away to shine up to five tiles away (cannot attack diagonally)
-
-Humans have a maximum 3 charges. Batteries re-fill your charges.";
+Shadows level up in corners. A level 3 shadow is permanent!";
 
 w = room_width - 100;
 </string>
