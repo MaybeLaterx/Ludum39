@@ -1,5 +1,5 @@
 // attemptKill();       returns bool
-with (oShadow1) {  
+with (oShadows) {  
     rnd = random(1); // fail chance
     if (rnd < 0.95 && oController.powersLeft > 0 && canAttack) {
         size = 32;
@@ -43,7 +43,8 @@ with (oShadow1) {
                 oController.powersLeft--; 
                 instance_create(x,y,oFloor); 
                 death = instance_create(x,y,oDeath);
-                death.sprite_index = sShadow1Death;
+                if (sprite_index == sShadow1) death.sprite_index = sShadow1Death;
+                else death.sprite_index = sShadow2Death;
                 instance_destroy();
                 return true;
             }

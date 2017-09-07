@@ -26,6 +26,191 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0.25;
+
+selected = false; 
+
+inside = false; 
+
+adjacent = false; 
+
+canAttack = true; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>inside = isInside(x,y); 
+
+adjacent = isAdjacent(x,y); 
+
+// Attack
+if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; canAttack &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
+    tile = instance_position(mouse_x,mouse_y,all);
+    if (tile != noone) { 
+        type = tile.object_index; 
+        if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+            oController.powersLeft--;
+            
+            // get centre coords 
+            if (mouse_x &gt; x + 16) xx = x + 32; 
+            else if (mouse_x &lt; x - 16) xx = x - 32; 
+            else xx = x; 
+            
+            if (mouse_y &gt; y + 16) yy = y + 32; 
+            else if (mouse_y &lt; y - 16) yy = y - 32; 
+            else yy = y; 
+       
+            // Kill adjacent humans
+            kill = false;
+            for (i = 0; i &lt; 3; i++) { 
+                for (j = 0; j &lt; 3; j++) { 
+                    xxx = xx - 32 + (32*j);
+                    yyy = yy - 32 + (32*i);
+                    humanTarget = instance_position(xxx,yyy,oHuman); 
+                    if (humanTarget != noone) { 
+                        with (humanTarget) { 
+                            instance_create(x,y,oFloor); 
+                            death = instance_create(x,y,oDeath);
+                            death.sprite_index = sHumanDeath;
+                            instance_destroy();
+                        }
+                        kill = true;
+                    }
+                }
+            }
+            
+            if (kill) {
+                if (!global.mutedSfx) audio_play_sound(sndHumanDeath,0,false); 
+                //if (!instance_exists(oHuman)) room_goto(rShadows);
+            }
+            
+            instance_create(x,y,oFloor); 
+            death = instance_create(x,y,oDeath);
+            death.sprite_index = sShadow2Death;
+            instance_destroy(); 
+        }
+    }
+}
+
+// Select
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
+    if (!selected) { 
+        selected = true; 
+        trace("Shadow selected");
+    } else { 
+        // Upgrade
+        if (oController.powersLeft &gt; 0) { 
+            if (!global.mutedSfx) audio_play_sound(sndShadow,0,false);
+            trace("Shadow upgraded");
+            instance_create(x,y,oShadow2); 
+            instance_destroy(); 
+            oController.powersLeft--;
+        }
+    }
+    
+    
+    if (selected) { 
+        with (oShadows) if (id != other.id) selected = false;  
+    }
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+    if (selected) { 
+        trace("Shadow deselected"); 
+        selected = false;
+    } 
+}
+
+if (mouse_check_button_pressed(mb_left) &amp;&amp; selected &amp;&amp; !inside) {
+    trace("Shadow deselected"); 
+    selected = false;
+}
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="73">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// Hover range display (humans) 
+dangerZones = 0; 
+hSelected = false; 
+with (oHuman) if (selected) other.hSelected = true; 
+if (!hSelected &amp;&amp; inside &amp;&amp; (selected || oController.humanTurn)) { 
+    size = 32;
+    insts[0] = instance_position(x + size,y,all); 
+    insts[1] = instance_position(x,y - size,all); 
+    insts[2] = instance_position(x - size,y,all); 
+    insts[3] = instance_position(x,y + size,all);
+    
+    for (h = 0; h &lt; 4; h++) { // directions
+        tile = insts[h];
+        if (tile != noone) { 
+            type = tile.object_index; 
+            if (type != oWall &amp;&amp; type != oShadow3) { 
+                for (i = 0; i &lt; 3; i++) { // height
+                    for (j = 0; j &lt; 3; j++) { // width
+                        if (instance_exists(tile)) { 
+
+                            xx = tile.x - 32 + (32*j);
+                            yy = tile.y - 32 + (32*i);
+                            
+                            if (!instance_position(xx,yy,oShadow3) &amp;&amp; !instance_position(xx,yy,oWall)) {
+                                coord = xx*1000000 + yy; 
+                                if (!addToArray(dangerZones,coord)) dangerZones[0] = coord; 
+                            }
+                        }
+                    }
+                }    
+            }
+        }
+    }
+    
+    if (is_array(dangerZones)) { 
+        for (i = 0; i &lt; array_length_1d(dangerZones); i++) { 
+            xx = floor(dangerZones[i]/1000000);
+            yy = dangerZones[i] - (xx*1000000); 
+            draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
+            //trace(xx); 
+            //trace(yy);
+        }
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -48,8 +233,39 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sFloor,0,x,y); 
+            <string>draw_sprite(sFloor,0,x,y);
+if (!canAttack) image_alpha = 0.45; 
+else image_alpha = 1; 
 draw_self(); 
+if (selected) draw_sprite(sOutline,0,x,y);
+
+// Hover attack options
+if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; canAttack) { 
+    tile = instance_position(mouse_x,mouse_y,all);
+    if (tile != noone) { 
+        type = tile.object_index; 
+        if (type != oWall &amp;&amp; type != oShadow3 &amp;&amp; (tile.x == x || tile.y == y)) { 
+            size = 32;
+            for (i = 0; i &lt; 3; i++) { 
+                for (j = 0; j &lt; 3; j++) {
+                    xx = tile.x - size + size*j; 
+                    yy = tile.y - size + size*i;
+                    if (instance_position(xx,yy,oFloor) || instance_position(xx,yy,oHuman)) draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
+                }
+            }
+        
+        
+            if (tile.x &gt; x &amp;&amp; tile.y &lt;= y) rot = 0; 
+            else if (tile.y &lt; y &amp;&amp; tile.x &lt;= x) rot = 90; 
+            else if (tile.x &lt; x &amp;&amp; tile.y &gt;= y) rot = 180; 
+            else rot = 270;
+            draw_sprite_ext(sArrowN,0,tile.x,tile.y,1,1,rot,-1,1); 
+        }
+    }
+}
+
+
+
 </string>
           </argument>
         </arguments>

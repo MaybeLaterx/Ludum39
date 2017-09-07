@@ -114,10 +114,9 @@ if ((global.ai == "humans" || global.ai == "simulation") &amp;&amp; humanTurn /*
             // Update tile information
             resetVals(oHuman);
             resetVals(oFloor); 
-            updateDangers(oShadow1);
+            updateDangers(oShadows);
             // updateDangers(oShadow2); //add exception for growing shadow2s(?)
-            updateScopes(oShadow1); 
-            updateScopes(oShadow2); 
+            updateScopes(oShadows);  
             updateBatteryProximity(7); 
             // updateWallProximity (so expensive!) 
     

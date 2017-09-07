@@ -61,7 +61,7 @@ canAttack = false;
 adjacent = isAdjacent(x,y); 
 
 // Attack
-if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; canAttack) { 
+if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_button_pressed(mb_left) &amp;&amp; canAttack &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
     tile = instance_position(mouse_x,mouse_y,all);
     if (tile != noone) { 
         type = tile.object_index; 
@@ -110,7 +110,7 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; mouse_check_butto
 }
 
 // Select
-if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn) { 
+if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
     if (!selected) { 
         selected = true; 
         trace("Shadow selected");
@@ -119,7 +119,8 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
         if (oController.powersLeft &gt; 0) { 
             if (!global.mutedSfx) audio_play_sound(sndShadow,0,false);
             trace("Shadow upgraded");
-            instance_create(x,y,oShadow2); 
+            sh2 = instance_create(x,y,oShadow2); 
+            sh2.canAttack = canAttack; 
             instance_destroy(); 
             oController.powersLeft--;
         }
@@ -127,7 +128,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
     
     
     if (selected) { 
-        with (oShadow1) if (id != other.id) selected = false;  
+        with (oShadows) if (id != other.id) selected = false;  
     }
 }
 
@@ -189,8 +190,10 @@ if (!hSelected &amp;&amp; inside &amp;&amp; (selected || oController.humanTurn))
                             xx = tile.x - 32 + (32*j);
                             yy = tile.y - 32 + (32*i);
                             
-                            coord = xx*1000000 + yy; 
-                            if (!addToArray(dangerZones,coord)) dangerZones[0] = coord; 
+                            if (!instance_position(xx,yy,oShadow3) &amp;&amp; !instance_position(xx,yy,oWall)) {
+                                coord = xx*1000000 + yy; 
+                                if (!addToArray(dangerZones,coord)) dangerZones[0] = coord; 
+                            }
                         }
                     }
                 }    
@@ -233,6 +236,8 @@ if (!hSelected &amp;&amp; inside &amp;&amp; (selected || oController.humanTurn))
             <kind>1</kind>
             <string>draw_sprite(sFloor,0,x,y);
 if (selected) draw_sprite(sOutline,0,x,y);
+if (!canAttack) image_alpha = 0.45; 
+else image_alpha = 1; 
 draw_self(); 
 
 // Hover attack options
@@ -246,7 +251,7 @@ if (adjacent &amp;&amp; selected &amp;&amp; !inside &amp;&amp; canAttack) {
                 for (j = 0; j &lt; 3; j++) {
                     xx = tile.x - size + size*j; 
                     yy = tile.y - size + size*i;
-                    draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
+                    if (instance_position(xx,yy,oFloor) || instance_position(xx,yy,oHuman)) draw_sprite_ext(sSkull,0,xx,yy,1,1,0,-1,0.5);
                 }
             }
         

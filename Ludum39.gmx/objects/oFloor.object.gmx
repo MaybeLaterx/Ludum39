@@ -57,7 +57,7 @@ battery = 99;
             <string>inside = isInside(x,y);
 
 shadowSelected = false; 
-with (oShadow1) if (selected) other.shadowSelected = true; 
+with (oShadows) if (selected) other.shadowSelected = true; 
 
 // Place shadow
 if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oController.humanTurn &amp;&amp; oController.powersLeft &gt; 0 &amp;&amp; suitable &amp;&amp; !shadowSelected &amp;&amp; global.ai != "shadows" &amp;&amp; global.ai != "simulation") { 
