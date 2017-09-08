@@ -39,10 +39,10 @@ Humans have a maximum 3 charges. Batteries re-fill your charges.
 
 SHADOWS
 Spawn level 1 shadow: click next to a wall
-Attack with level 1 shadow: click shadow, click in direction of attack
+Attack with level 1 or level 2 shadow: click shadow, click in direction of attack
 Level up level 1 shadow: double click
 
-Shadows level up in corners. A level 3 shadow is permanent!";
+Level 1 shadows level up in corners. Level 2 shadows always level up (unless destroyed). A level 3 shadow is permanent!";
 
 w = room_width - 100;
 </string>

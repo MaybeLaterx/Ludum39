@@ -114,17 +114,7 @@ if (mouse_check_button_pressed(mb_left) &amp;&amp; inside &amp;&amp; !oControlle
     if (!selected) { 
         selected = true; 
         trace("Shadow selected");
-    } else { 
-        // Upgrade
-        if (oController.powersLeft &gt; 0) { 
-            if (!global.mutedSfx) audio_play_sound(sndShadow,0,false);
-            trace("Shadow upgraded");
-            instance_create(x,y,oShadow2); 
-            instance_destroy(); 
-            oController.powersLeft--;
-        }
-    }
-    
+    }     
     
     if (selected) { 
         with (oShadows) if (id != other.id) selected = false;  
